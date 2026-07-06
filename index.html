@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORLD CUP '26 — Retro Fan Zone</title>
+<meta name="description" content="A retro game-style interactive guide to the 2026 FIFA World Cup: rotating globe, 48 nations, standings, bracket, odds and history.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- CRT overlay effects -->
+<div class="scanlines" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- ============ INTRO SCREEN ============ -->
+<section id="screen-intro" class="screen active">
+  <div class="intro-stars" aria-hidden="true"></div>
+  <div class="intro-inner">
+    <div class="intro-trophy">🏆</div>
+    <h1 class="intro-title">
+      <span class="line1">WORLD CUP</span>
+      <span class="line2">'26</span>
+    </h1>
+    <p class="intro-sub">★ CANADA · MEXICO · USA ★</p>
+    <p class="intro-sub2">48 NATIONS &nbsp;·&nbsp; 104 MATCHES &nbsp;·&nbsp; 1 TROPHY</p>
+    <button id="btn-start" class="press-start blink">▶ PRESS START ◀</button>
+    <p class="insert-coin">INSERT COIN — FREE PLAY MODE</p>
+    <p class="copyright">© 2026 RETRO FAN ZONE — NOT AFFILIATED WITH FIFA</p>
+  </div>
+</section>
+
+<!-- ============ NAV BAR ============ -->
+<nav id="navbar" class="hidden">
+  <button class="nav-btn" data-nav="globe">🌍 GLOBE</button>
+  <button class="nav-btn" data-nav="hub">🏆 TOURNAMENT</button>
+  <button class="nav-btn" data-nav="history">📜 HISTORY</button>
+  <span class="nav-spacer"></span>
+  <span id="nav-score" class="nav-score">SCORE 002026</span>
+  <button id="btn-sound" class="nav-btn" title="Toggle sound">🔊</button>
+</nav>
+
+<!-- ============ GLOBE SCREEN ============ -->
+<section id="screen-globe" class="screen">
+  <div class="globe-layout">
+    <div class="globe-left">
+      <h2 class="screen-title">SELECT YOUR NATION</h2>
+      <p class="globe-hint">CLICK A BLINKING DOT ON THE GLOBE<br>OR PICK A TEAM FROM THE ROSTER →</p>
+      <div class="globe-wrap">
+        <canvas id="globe" width="480" height="480"></canvas>
+        <div id="globe-tooltip" class="globe-tooltip hidden"></div>
+      </div>
+      <div class="globe-controls">
+        <button id="globe-spin" class="mini-btn">⏸ PAUSE SPIN</button>
+        <button id="globe-left" class="mini-btn">◀</button>
+        <button id="globe-right" class="mini-btn">▶</button>
+      </div>
+    </div>
+    <div class="globe-right">
+      <div class="live-banner" id="live-banner"></div>
+      <div id="team-roster" class="team-roster"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COUNTRY SCREEN ============ -->
+<section id="screen-country" class="screen">
+  <div id="country-bg" class="country-bg" aria-hidden="true"></div>
+  <div class="country-content">
+    <button class="mini-btn back-btn" data-nav="globe">◀ BACK TO GLOBE</button>
+    <header class="country-header">
+      <span id="country-flag" class="country-flag"></span>
+      <div>
+        <h2 id="country-name" class="country-name"></h2>
+        <p id="country-tagline" class="country-tagline"></p>
+      </div>
+      <span id="country-group" class="country-group-badge"></span>
+    </header>
+
+    <div class="country-grid">
+      <div class="panel player-panel">
+        <h3 class="panel-title">— TEAM SPRITE —</h3>
+        <canvas id="player-canvas" width="260" height="240"></canvas>
+        <p id="kit-desc" class="kit-desc"></p>
+        <p class="panel-hint">CLICK THE PLAYER TO KICK!</p>
+        <div class="panel-sub">
+          <h4>★ STAR SQUAD ★</h4>
+          <ul id="country-legends"></ul>
+        </div>
+      </div>
+
+      <div class="panel-col">
+        <div class="panel">
+          <h3 class="panel-title">🕹 KNOWN FOR</h3>
+          <p id="country-knownfor"></p>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">🗺 TOP SIGHTS</h3>
+          <ul id="country-sights"></ul>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">🍜 POWER-UP FOODS</h3>
+          <ul id="country-foods"></ul>
+        </div>
+      </div>
+
+      <div class="panel-col">
+        <div class="panel">
+          <h3 class="panel-title">🎎 CULTURE</h3>
+          <p id="country-culture"></p>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">⚽ WORLD CUP RECORD</h3>
+          <p id="country-wc"></p>
+        </div>
+        <div class="panel status-panel">
+          <h3 class="panel-title">🎮 2026 RUN</h3>
+          <p id="country-status"></p>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">💾 BONUS FACT</h3>
+          <p id="country-fact"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOURNAMENT HUB SCREEN ============ -->
+<section id="screen-hub" class="screen">
+  <h2 class="screen-title">TOURNAMENT CENTRAL</h2>
+  <p class="hub-updated">DATA PATCH: JULY 6, 2026 — QUARTERFINALS LOADING…</p>
+  <div class="hub-tabs">
+    <button class="hub-tab active" data-tab="standings">STANDINGS</button>
+    <button class="hub-tab" data-tab="bracket">BRACKET</button>
+    <button class="hub-tab" data-tab="matches">MATCHES</button>
+    <button class="hub-tab" data-tab="odds">ODDS</button>
+  </div>
+  <div id="hub-live" class="live-banner"></div>
+  <div id="tab-standings" class="hub-panel active"></div>
+  <div id="tab-bracket" class="hub-panel"></div>
+  <div id="tab-matches" class="hub-panel"></div>
+  <div id="tab-odds" class="hub-panel"></div>
+</section>
+
+<!-- ============ HISTORY SCREEN ============ -->
+<section id="screen-history" class="screen">
+  <h2 class="screen-title">HALL OF FAME</h2>
+  <div class="history-grid">
+    <div class="panel history-panel">
+      <h3 class="panel-title">🏆 CHAMPIONS TIMELINE</h3>
+      <div id="history-timeline"></div>
+    </div>
+    <div class="history-col">
+      <div class="panel">
+        <h3 class="panel-title">👑 LEGENDS OF THE CUP</h3>
+        <div id="history-legends" class="legends-grid"></div>
+      </div>
+      <div class="panel">
+        <h3 class="panel-title">🎮 WORLD CUP 2026 FACTS</h3>
+        <ul id="history-facts"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/data.js"></script>
+<script src="js/tournament.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
