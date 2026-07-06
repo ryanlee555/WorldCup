@@ -253,7 +253,7 @@ function renderStandings() {
     });
     html += "</table></div>";
   }
-  html += "</div><p class='data-note'>— = final points not in this data patch. Badge shows the confirmed outcome.</p>";
+  html += "</div><p class='data-note'>Click any team in a group to visit its country page, complete with a full match-by-match game log.</p>";
   document.getElementById("tab-standings").innerHTML = html;
 }
 
@@ -288,7 +288,7 @@ function renderBracket() {
   html += '</div><div class="bracket-col"><h4>FINAL 🏆</h4><div class="bspacer mega"></div>' +
     matchCard(byId["f-1"], true) + '<div class="bspacer"></div>' + matchCard(byId["f-3rd"], true);
   html += "</div></div></div>";
-  html += "<p class='data-note'>W = won, exact score not in this data patch. Scroll sideways for the full road to July 19 →</p>";
+  html += "<p class='data-note'>Scroll sideways for the full road to July 19 → Click any match for its box score.</p>";
   document.getElementById("tab-bracket").innerHTML = html;
 }
 
@@ -336,7 +336,7 @@ function renderHistory() {
 }
 
 /* ---------------- match detail modal ---------------- */
-function goalStr(g) { return `${g.p} ${g.m}'${g.pen ? " (P)" : ""}${g.og ? " (OG)" : ""}`; }
+function goalStr(g) { return `${g.p}${g.m != null ? " " + g.m + "'" : ""}${g.pen ? " (P)" : ""}${g.og ? " (OG)" : ""}`; }
 
 function statRow(label, a, b, pct) {
   const total = (a + b) || 1;
@@ -388,12 +388,15 @@ function matchModalHTML(m) {
   }
   if (d.stats) {
     const s = d.stats;
-    body += `<div class="ms-section-title">— MATCH STATS —</div><div class="ms-stats">
-      ${statRow("POSSESSION", s.pos[0], s.pos[1], true)}
-      ${statRow("SHOTS", s.sh[0], s.sh[1])}
-      ${statRow("ON TARGET", s.sot[0], s.sot[1])}
-      ${statRow("CORNERS", s.cor[0], s.cor[1])}
-      ${statRow("FOULS", s.fouls[0], s.fouls[1])}</div>`;
+    const has = pair => Array.isArray(pair) && pair[0] != null && pair[1] != null;
+    let rows = "";
+    if (has(s.pos)) rows += statRow("POSSESSION", s.pos[0], s.pos[1], true);
+    if (has(s.sh)) rows += statRow("SHOTS", s.sh[0], s.sh[1]);
+    if (has(s.sot)) rows += statRow("ON TARGET", s.sot[0], s.sot[1]);
+    if (has(s.cor)) rows += statRow("CORNERS", s.cor[0], s.cor[1]);
+    if (has(s.fouls)) rows += statRow("FOULS", s.fouls[0], s.fouls[1]);
+    if (has(s.xg)) rows += statRow("xG", s.xg[0], s.xg[1]);
+    if (rows) body += `<div class="ms-section-title">— MATCH STATS —</div><div class="ms-stats">${rows}</div>`;
   }
   if (d.motm) body += `<div class="ms-motm">⭐ PLAYER OF THE MATCH: <b>${d.motm.p}</b> (${TEAMS[d.motm.t].name})</div>`;
   if (summary) body += `<div class="ms-summary">${summary}</div>`;
@@ -402,7 +405,7 @@ function matchModalHTML(m) {
   return head + body + modalFooter();
 }
 function modalFooter() {
-  return `<div class="ms-footer">Curated data patch · July 6, 2026. Scorelines match the standings; goal details are best-effort.</div>`;
+  return `<div class="ms-footer">Researched from live tournament coverage (ESPN, FIFA/Opta, Al Jazeera, Sky Sports) as of July 6, 2026. A few individual goal minutes or stats weren't reported and are shown as scoreline-only.</div>`;
 }
 
 function openMatchModal(id) {

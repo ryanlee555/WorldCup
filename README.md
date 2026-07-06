@@ -14,10 +14,12 @@ Pure HTML/CSS/JS — no build step, no dependencies, runs anywhere.
   pixel player juggling a ball in that country's kit** (click him to kick!).
   **HOME / AWAY kit toggle** switches the jersey shown.
 - **Match reports everywhere** — every game (all 72 group matches + the full
-  knockout stage) is clickable and opens a **retro box score**: goalscorers with
-  minutes, penalties, red cards, possession/shots/corners stat bars, player of
-  the match and a match summary. Each country page has a **Game Log** of that
-  nation's matches; every match card in the tournament tabs opens the same report.
+  knockout stage) is clickable and opens a **retro box score**. Knockout-stage
+  goals, cards, and stats are researched from live tournament coverage (ESPN,
+  FIFA/Opta match centres, Al Jazeera, Sky Sports) rather than invented — a few
+  individual stats that weren't reported are simply omitted rather than guessed.
+  Each country page has a **Game Log** of that nation's matches; every match
+  card in the tournament tabs opens the same report.
 - **Tournament Central** — real 2026 data (patched July 6, 2026, mid Round-of-16):
   - Group standings for all 12 groups
   - Full knockout bracket: Round of 32 → Final (July 19, New York New Jersey Stadium)
@@ -56,9 +58,9 @@ Knockout results + tournament state live in **`js/tournament.js`**:
 - `ODDS` — sportsbook lines
 - `LIVE_TODAY` — the red "today" banner
 
-Group-stage games live in **`js/groups.js`** (`GROUP_MATCHES`, all 72). Each has
-a scoreline and a `sc` scorer list — these feed the country Game Logs and their
-match reports.
+Group-stage games live in **`js/groups.js`** (`GROUP_MATCHES`, all 72), with
+real scorelines and (where reported) scorers researched from live coverage.
+These feed the country Game Logs and their match reports.
 
 Country content (sights, food, culture, kits) lives in **`js/data.js`** —
 each team is one self-contained object, so it's easy to edit or extend.

@@ -207,7 +207,7 @@ const TEAMS = {
     legends: ["José Luis Chilavert", "Roque Santa Cruz", "Miguel Almirón", "Julio Enciso"],
     wc: "9th appearance. Quarterfinalists in 2010 — and 2026 authors of the tournament's biggest upset.",
     fact: "Paraguay declared a national holiday after knocking out Germany in the Round of 32.",
-    status: "🟨 ADVANCED FROM GROUP D → SHOCKED GERMANY IN THE R32 (NATIONAL HOLIDAY!) → FELL 1-0 TO FRANCE IN THE ROUND OF 16."
+    status: "🟨 ADVANCED FROM GROUP D AS A BEST 3RD → SHOCKED GERMANY IN THE R32 (NATIONAL HOLIDAY!) → FELL 1-0 TO FRANCE IN THE ROUND OF 16."
   },
   aus: {
     name: "AUSTRALIA", flag: "🇦🇺", group: "D", lat: -25.3, lon: 133.8,
@@ -221,7 +221,7 @@ const TEAMS = {
     legends: ["Tim Cahill", "Harry Kewell", "Mat Ryan", "Jackson Irvine"],
     wc: "7th appearance — 6th in a row. Round of 16 in 2006 and 2022.",
     fact: "Australia once won a qualifier 31-0 (vs American Samoa, 2001) — a world record.",
-    status: "🟩 ADVANCED FROM GROUP D AS A BEST 3RD → OUT ON PENALTIES (2-4) VS EGYPT IN THE ROUND OF 32."
+    status: "🟩 RUNNER-UP GROUP D → OUT ON PENALTIES (2-4) VS EGYPT IN THE ROUND OF 32."
   },
   tur: {
     name: "TÜRKIYE", flag: "🇹🇷", group: "D", lat: 39.0, lon: 35.2,
@@ -599,7 +599,7 @@ const TEAMS = {
     legends: ["Cristiano Ronaldo", "Eusébio", "Luís Figo", "Bernardo Silva", "Rafael Leão"],
     wc: "9th appearance. Third in 1966 (Eusébio's 9 goals); Ronaldo, 41, chasing the one trophy left.",
     fact: "Ronaldo is the only man to score at SIX World Cups (2006–2026).",
-    status: "🟦 WON GROUP K → SURVIVED CROATIA IN VAR CHAOS → IBERIAN DERBY VS SPAIN TODAY IN DALLAS."
+    status: "🟩 RUNNER-UP GROUP K (5 PTS) → SURVIVED CROATIA IN VAR CHAOS → IBERIAN DERBY VS SPAIN TODAY IN DALLAS."
   },
   cod: {
     name: "DR CONGO", flag: "🇨🇩", group: "K", lat: -2.9, lon: 23.7,
@@ -641,7 +641,7 @@ const TEAMS = {
     legends: ["Carlos Valderrama", "James Rodríguez", "Falcao", "Luis Díaz"],
     wc: "7th appearance. James won the 2014 Golden Boot with THAT volley.",
     fact: "Colombia is the world's #1 source of emeralds and second-most biodiverse country.",
-    status: "🟦 ADVANCED FROM GROUP K → EDGED GHANA 1-0 → FACES SWITZERLAND IN VANCOUVER, JUL 7."
+    status: "🟨 WON GROUP K (7 PTS) → EDGED GHANA 1-0 → FACES SWITZERLAND IN VANCOUVER, JUL 7."
   },
 
   /* ---------------- GROUP L ---------------- */
