@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 6, 2026 (morning) — during the Round of 16.
+   DATA PATCH: July 6, 2026 (evening) — Round of 16 in progress.
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -106,8 +106,9 @@ const MATCHES = [
     d:{ goals:[{t:"nor",p:"Haaland",m:79},{t:"nor",p:"Haaland",m:90},{t:"bra",p:"Neymar",m:100,pen:true}],
         stats:{pos:[66,34],sh:[9,5],xg:[2.73,0.84]}, motm:{t:"nor",p:"Erling Haaland"},
         sum:"Brazil had 66% possession and dominated for long stretches — Norway keeper Ørjan Nyland even saved a first-half Bruno Guimarães penalty — but Haaland's second-half brace sent Norway to their first-ever World Cup quarterfinal. Neymar's stoppage-time penalty, possibly his final act for the Seleção, arrived too late." } },
-  { id:"r16-5", round:"R16", date:"JUL 6 · 3PM ET", a:"por", b:"esp", sa:null, sb:null, status:"today", venue:"DALLAS STADIUM",
-    d:{ preview:"The Iberian derby — in the Round of 16?! Ronaldo's Portugal against Lamine Yamal and the Euro champions. Two of the tournament's in-form attacks, one goes home. Kick-off 3PM ET in Dallas." } },
+  { id:"r16-5", round:"R16", date:"JUL 6", a:"por", b:"esp", sa:0, sb:1, status:"played", note:"MERINO 90+1' WINNER · RONALDO'S WORLD CUP CAREER ENDS", venue:"DALLAS STADIUM", espnId:760506,
+    d:{ goals:[{t:"esp",p:"Mikel Merino",m:91}], stats:{pos:[44,56],sh:[9,15],sot:[2,6],xg:[0.56,1.77]}, motm:{t:"esp",p:"Mikel Merino"},
+        sum:"An Iberian derby settled at the death: Ferran Torres slipped in Mikel Merino to score in the first minute of stoppage time and send the Euro champions through. Portugal managed just 0.56 xG, and the final whistle ended Cristiano Ronaldo's record sixth and final World Cup without the trophy that always eluded him." } },
   { id:"r16-6", round:"R16", date:"JUL 6 · 8PM ET", a:"usa", b:"bel", sa:null, sb:null, status:"today", venue:"SEATTLE STADIUM",
     d:{ preview:"Last host standing. A roaring Seattle crowd behind Pulisic's USA, against a Belgium side that just survived the R32 classic of the tournament. Win and the co-hosts reach the quarters. Kick-off 8PM ET." } },
   { id:"r16-7", round:"R16", date:"JUL 7 · 12PM ET", a:"arg", b:"egy", sa:null, sb:null, status:"upcoming", venue:"ATLANTA STADIUM",
@@ -118,8 +119,8 @@ const MATCHES = [
   /* Quarterfinals — Jul 9–12 */
   { id:"qf-1", round:"QF", date:"JUL 9 · 4PM ET", a:"fra", b:"mar", sa:null, sb:null, status:"upcoming", venue:"BOSTON STADIUM",
     d:{ preview:"Tournament favourites France (who haven't conceded in the knockouts) against the fearless Atlas Lions, 2022's semifinalists. A blockbuster in Boston." } },
-  { id:"qf-2", round:"QF", date:"JUL 10 · 12PM ET", a:null, b:null, ph:"USA/BEL vs POR/ESP", sa:null, sb:null, status:"tbd", venue:"LOS ANGELES STADIUM",
-    d:{ preview:"The winners of USA–Belgium and Portugal–Spain meet in Los Angeles. Both of today's ties feed this quarterfinal." } },
+  { id:"qf-2", round:"QF", date:"JUL 10 · 12PM ET", a:"esp", b:null, ph:"SPAIN vs USA/BEL", sa:null, sb:null, status:"tbd", venue:"LOS ANGELES STADIUM",
+    d:{ preview:"Spain, through after edging Portugal, await the winner of USA–Belgium in Los Angeles for a place in the semifinals." } },
   { id:"qf-3", round:"QF", date:"JUL 11 · 5PM ET", a:"nor", b:"eng", sa:null, sb:null, status:"upcoming", venue:"MIAMI STADIUM",
     d:{ preview:"Haaland vs the Three Lions. Norway's conquerors of Brazil against Bellingham & Kane's England. Golden Boot fireworks expected in Miami." } },
   { id:"qf-4", round:"QF", date:"JUL 12 · 8PM ET", a:null, b:null, ph:"ARG/EGY vs SUI/COL", sa:null, sb:null, status:"tbd", venue:"KANSAS CITY STADIUM",
@@ -150,8 +151,7 @@ const ODDS = [
   { t:"fra", line:"+170",  tier:"FAVORITE",   note:"No knockout goals conceded" },
   { t:"arg", line:"+470",  tier:"CONTENDER",  note:"Messi's title defense" },
   { t:"eng", line:"+500",  tier:"CONTENDER",  note:"Bellingham & Kane firing" },
-  { t:"esp", line:"+600",  tier:"CONTENDER",  note:"Euro champs · Iberian derby today" },
-  { t:"por", line:"n/a",   tier:"DARK HORSE", note:"Ronaldo's last dance" },
+  { t:"esp", line:"+600",  tier:"CONTENDER",  note:"Euro champs · edged Portugal into the QFs" },
   { t:"nor", line:"n/a",   tier:"DARK HORSE", note:"Haaland: 7 goals & surging" },
   { t:"usa", line:"n/a",   tier:"DARK HORSE", note:"Last host standing" },
   { t:"mar", line:"n/a",   tier:"DARK HORSE", note:"2022 semifinalists, fearless" },
@@ -163,10 +163,11 @@ const ODDS = [
 
 /* ---- Live banner ---- */
 const LIVE_TODAY = {
-  label: "⚡ TODAY — JUL 6",
+  label: "⚡ JUL 6 — ROUND OF 16",
   items: [
-    "PORTUGAL vs SPAIN · 3PM ET · DALLAS — the Iberian derby, in the ROUND OF 16?!",
-    "USA vs BELGIUM · 8PM ET · SEATTLE — last host standing fights on"
+    "FT: SPAIN 1-0 PORTUGAL — Merino's stoppage-time winner ends Ronaldo's World Cup career",
+    "LIVE: USA vs BELGIUM · 8PM ET · SEATTLE — last host standing fights on",
+    "NEXT: ARGENTINA vs EGYPT & SWITZERLAND vs COLOMBIA — Jul 7"
   ]
 };
 

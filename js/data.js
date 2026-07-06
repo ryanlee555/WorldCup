@@ -425,7 +425,7 @@ const TEAMS = {
     legends: ["Andrés Iniesta", "Xavi", "Iker Casillas", "Lamine Yamal", "Pedri"],
     wc: "17th appearance. Champions 2010; European champions 2024 playing the tournament's prettiest football.",
     fact: "Lamine Yamal became Spain's youngest ever World Cup scorer this summer — still a teenager.",
-    status: "🟦 WON GROUP H → CRUISED PAST AUSTRIA (OYARZABAL ×2) → EL CLÁSICO OF NATIONS: PORTUGAL, TODAY IN DALLAS."
+    status: "🟦 WON GROUP H → CRUISED PAST AUSTRIA (OYARZABAL ×2) → MERINO'S 90+1' WINNER BEAT PORTUGAL 1-0 → QUARTERFINAL VS USA/BELGIUM, JUL 10 IN LA."
   },
   cpv: {
     name: "CAPE VERDE", flag: "🇨🇻", group: "H", lat: 15.1, lon: -23.6,
@@ -599,7 +599,7 @@ const TEAMS = {
     legends: ["Cristiano Ronaldo", "Eusébio", "Luís Figo", "Bernardo Silva", "Rafael Leão"],
     wc: "9th appearance. Third in 1966 (Eusébio's 9 goals); Ronaldo, 41, chasing the one trophy left.",
     fact: "Ronaldo is the only man to score at SIX World Cups (2006–2026).",
-    status: "🟩 RUNNER-UP GROUP K (5 PTS) → SURVIVED CROATIA IN VAR CHAOS → IBERIAN DERBY VS SPAIN TODAY IN DALLAS."
+    status: "🟥 RUNNER-UP GROUP K (5 PTS) → SURVIVED CROATIA IN VAR CHAOS → ELIMINATED 1-0 BY SPAIN IN THE R16. RONALDO'S SIXTH & FINAL WORLD CUP ENDS."
   },
   cod: {
     name: "DR CONGO", flag: "🇨🇩", group: "K", lat: -2.9, lon: 23.7,
