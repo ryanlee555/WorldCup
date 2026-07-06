@@ -388,6 +388,12 @@ canvas { image-rendering: pixelated; }
 .stat-track { background: #06061a; border: 1px solid var(--border); height: 8px; }
 .stat-fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--gold)); }
 .ms-motm { text-align: center; font-size: 9px; color: var(--gold); margin: 14px 0 6px; }
+.ms-espn-link {
+  display: block; text-align: center; margin-top: 16px; padding: 10px;
+  background: var(--panel2); border: 2px solid var(--cyan); color: var(--cyan);
+  font-size: 9px; text-decoration: none; letter-spacing: .5px;
+}
+.ms-espn-link:hover { background: var(--cyan); color: #062a2e; }
 .ms-summary { background: var(--panel2); padding: 12px; font-size: 9px; line-height: 1.9; margin-top: 8px; border-left: 3px solid var(--gold); }
 .ms-footer { text-align: center; color: var(--dim); font-size: 7px; margin-top: 14px; }
 
