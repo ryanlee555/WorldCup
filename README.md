@@ -7,10 +7,17 @@ Pure HTML/CSS/JS — no build step, no dependencies, runs anywhere.
 
 - **PRESS START intro** — classic arcade splash screen (Enter works too)
 - **Rotating pixel globe** — canvas-rendered Earth with blinking markers for all
-  48 qualified nations; click a marker (or the roster) to visit that country
+  48 qualified nations; **drag to spin/tilt it** with mouse or touch, or click a
+  marker (or the roster) to visit that country
 - **48 country pages** — sights, food, culture, World Cup record, star squad,
   a themed animated background per nation, and a procedurally-drawn **retro
-  pixel player juggling a ball in that country's real kit** (click him to kick!)
+  pixel player juggling a ball in that country's kit** (click him to kick!).
+  **HOME / AWAY kit toggle** switches the jersey shown.
+- **Match reports everywhere** — every game (all 72 group matches + the full
+  knockout stage) is clickable and opens a **retro box score**: goalscorers with
+  minutes, penalties, red cards, possession/shots/corners stat bars, player of
+  the match and a match summary. Each country page has a **Game Log** of that
+  nation's matches; every match card in the tournament tabs opens the same report.
 - **Tournament Central** — real 2026 data (patched July 6, 2026, mid Round-of-16):
   - Group standings for all 12 groups
   - Full knockout bracket: Round of 32 → Final (July 19, New York New Jersey Stadium)
@@ -39,20 +46,27 @@ A deploy workflow is included (`.github/workflows/deploy.yml`). To go live:
 
 ## 📝 Updating tournament data
 
-All live-tournament data lives in **`js/tournament.js`**:
+Knockout results + tournament state live in **`js/tournament.js`**:
 
-- `MATCHES` — add scores / flip `status` (`played` / `today` / `upcoming` / `tbd`)
-  as games finish. `sa`/`sb` of `null` on a played match renders a **W** badge
-  (winner listed first) when the exact score wasn't tracked.
+- `MATCHES` — knockout games. Flip `status` (`played` / `today` / `upcoming` /
+  `tbd`) and set `sa`/`sb` as games finish. Each match's `d` object holds the box
+  score: `goals` (`{t,p,m,pen,og}`), `cards`, `pens`, `stats`, `motm`, `sum`, or a
+  `preview` string for games not yet played.
 - `GROUPS` — group standings (`W` winner / `Q` qualified / `T` best third / `X` out)
 - `ODDS` — sportsbook lines
 - `LIVE_TODAY` — the red "today" banner
+
+Group-stage games live in **`js/groups.js`** (`GROUP_MATCHES`, all 72). Each has
+a scoreline and a `sc` scorer list — these feed the country Game Logs and their
+match reports.
 
 Country content (sights, food, culture, kits) lives in **`js/data.js`** —
 each team is one self-contained object, so it's easy to edit or extend.
 
 Team kit colors drive the pixel player automatically (`kit.pattern`:
-`solid`, `stripes`, `hoops`, `checks`, `halves`, `sash`).
+`solid`, `stripes`, `hoops`, `checks`, `halves`, `sash`). Home kits are on each
+team; iconic **away kits** are in `KITS_AWAY` (any team without one gets a
+distinct auto-generated change kit).
 
 ---
 

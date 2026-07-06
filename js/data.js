@@ -541,7 +541,7 @@ const TEAMS = {
     legends: ["Lionel Messi", "Diego Maradona", "Mario Kempes", "Gabriel Batistuta", "Julián Álvarez"],
     wc: "19th appearance. Champions 1978, 1986, 2022 — chasing back-to-back titles, last done by Brazil in 1962.",
     fact: "Messi, 39, is playing his SIXTH World Cup — a men's record.",
-    status: "🟦 WON GROUP J (H2H TIEBREAK) → SURVIVED CAPE VERDE 3-2 AET → MESSI VS SALAH: EGYPT NEXT, JUL 7 IN ATLANTA. +470 SECOND-FAVORITES."
+    status: "🟦 WON GROUP J → SURVIVED CAPE VERDE 3-2 AET → MESSI VS SALAH: EGYPT NEXT, JUL 7 IN ATLANTA. +470 SECOND-FAVORITES."
   },
   alg: {
     name: "ALGERIA", flag: "🇩🇿", group: "J", lat: 28.0, lon: 2.6,
@@ -701,6 +701,31 @@ const TEAMS = {
     fact: "Ships pay up to $500,000+ for one Panama Canal transit. Swimmers: not allowed.",
     status: "🟥 ELIMINATED IN GROUP L."
   }
+};
+
+/* ---- Real change (away) kits for well-known sides.
+   Any team not listed gets a distinct auto-generated away kit (see app.js). ---- */
+const KITS_AWAY = {
+  bra: { p:"#1a3fb0", s:"#FFDC00", pattern:"solid", shorts:"#1a3fb0", socks:"#FFFFFF" },
+  arg: { p:"#15152e", s:"#75AADB", pattern:"solid", shorts:"#15152e", socks:"#15152e" },
+  fra: { p:"#F5F5F5", s:"#001E62", pattern:"solid", shorts:"#001E62", socks:"#F5F5F5" },
+  esp: { p:"#1b2a6b", s:"#F1BF00", pattern:"solid", shorts:"#1b2a6b", socks:"#1b2a6b" },
+  por: { p:"#F5F5F5", s:"#E42518", pattern:"solid", shorts:"#F5F5F5", socks:"#E42518" },
+  ger: { p:"#1f7a48", s:"#FFFFFF", pattern:"solid", shorts:"#0b3d24", socks:"#1f7a48" },
+  ned: { p:"#16266b", s:"#FF6600", pattern:"solid", shorts:"#16266b", socks:"#16266b" },
+  eng: { p:"#C8102E", s:"#FFFFFF", pattern:"solid", shorts:"#C8102E", socks:"#C8102E" },
+  mex: { p:"#101010", s:"#046A38", pattern:"solid", shorts:"#101010", socks:"#101010" },
+  usa: { p:"#15193a", s:"#FFFFFF", pattern:"solid", shorts:"#15193a", socks:"#15193a" },
+  bel: { p:"#F2D400", s:"#000000", pattern:"solid", shorts:"#000000", socks:"#F2D400" },
+  mar: { p:"#F5F5F5", s:"#C1272D", pattern:"solid", shorts:"#F5F5F5", socks:"#C1272D" },
+  uru: { p:"#0a1a3a", s:"#FFFFFF", pattern:"solid", shorts:"#0a1a3a", socks:"#0a1a3a" },
+  cro: { p:"#0a1226", s:"#FFFFFF", pattern:"checks", shorts:"#0a1226", socks:"#0a1226" },
+  jpn: { p:"#F5F5F5", s:"#003DA5", pattern:"solid", shorts:"#F5F5F5", socks:"#F5F5F5" },
+  nor: { p:"#0a1a4a", s:"#FFFFFF", pattern:"solid", shorts:"#0a1a4a", socks:"#0a1a4a" },
+  sen: { p:"#00853F", s:"#FDEF42", pattern:"solid", shorts:"#00853F", socks:"#00853F" },
+  gha: { p:"#CE1126", s:"#FCD116", pattern:"solid", shorts:"#CE1126", socks:"#CE1126" },
+  col: { p:"#0a1a5a", s:"#FCD116", pattern:"solid", shorts:"#0a1a5a", socks:"#0a1a5a" },
+  sui: { p:"#101426", s:"#DA291C", pattern:"solid", shorts:"#101426", socks:"#101426" }
 };
 
 /* Group order for rosters/standings */

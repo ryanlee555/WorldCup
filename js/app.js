@@ -36,6 +36,35 @@ for (const [id, t] of Object.entries(TEAMS)) t._alive = ALIVE.has(id);
 const screens = ["intro", "globe", "country", "hub", "history"];
 let currentPlayer = null;
 let globe = null;
+let currentTeamId = null;
+let currentKitWhich = "home";
+
+/* ---------------- kit helpers (home / away) ---------------- */
+function hexLum(hex) {
+  const c = hex.replace("#", "");
+  const r = parseInt(c.substr(0, 2), 16), g = parseInt(c.substr(2, 2), 16), b = parseInt(c.substr(4, 2), 16);
+  return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+}
+function autoAway(kit) {
+  const base = hexLum(kit.p) > 0.5 ? "#15173a" : "#f2f2f2";
+  return { p: base, s: kit.p, pattern: "solid", shorts: base, socks: kit.p };
+}
+function getKit(id, which) {
+  const t = TEAMS[id];
+  if (which === "home") return t.kit;
+  return KITS_AWAY[id] || autoAway(t.kit);
+}
+
+/* ---------------- unified match lookup + team game logs ---------------- */
+const ALL_MATCHES = {};
+[...GROUP_MATCHES, ...MATCHES].forEach(m => { ALL_MATCHES[m.id] = m; });
+const ROUND_ORDER = { R32: 1, R16: 2, QF: 3, SF: 4, "3RD": 5, FINAL: 6 };
+
+function teamMatches(id) {
+  const gs = GROUP_MATCHES.filter(m => m.a === id || m.b === id).sort((x, y) => x.md - y.md);
+  const ko = MATCHES.filter(m => m.a === id || m.b === id).sort((x, y) => ROUND_ORDER[x.round] - ROUND_ORDER[y.round]);
+  return [...gs, ...ko];
+}
 
 function show(name) {
   for (const s of screens) document.getElementById("screen-" + s).classList.toggle("active", s === name);
@@ -144,11 +173,52 @@ function openCountry(id) {
   document.getElementById("country-sights").innerHTML = t.sights.map(s => `<li>▸ ${s}</li>`).join("");
   document.getElementById("country-foods").innerHTML = t.foods.map(s => `<li>▸ ${s}</li>`).join("");
   document.getElementById("country-legends").innerHTML = t.legends.map(s => `<li>⭐ ${s}</li>`).join("");
-  document.getElementById("kit-desc").textContent =
-    `${t.kit.pattern.toUpperCase()} KIT · HOME COLOURS`;
+  // kit toggle: reset to HOME each time a country opens
+  currentTeamId = id;
+  currentKitWhich = "home";
+  document.querySelectorAll(".kit-btn").forEach(b => b.classList.toggle("active", b.dataset.kit === "home"));
+  document.getElementById("kit-desc").textContent = `${t.kit.pattern.toUpperCase()} KIT · HOME COLOURS`;
 
   if (currentPlayer) currentPlayer.stop();
   currentPlayer = new PlayerSprite(document.getElementById("player-canvas"), t.kit);
+
+  renderGameLog(id);
+}
+
+function applyKit() {
+  if (!currentTeamId || !currentPlayer) return;
+  const kit = getKit(currentTeamId, currentKitWhich);
+  currentPlayer.setKit(kit);
+  document.getElementById("kit-desc").textContent =
+    `${kit.pattern.toUpperCase()} KIT · ${currentKitWhich === "home" ? "HOME COLOURS" : "AWAY / CHANGE KIT"}`;
+}
+
+/* ---------------- team game log ---------------- */
+function renderGameLog(id) {
+  const rows = teamMatches(id).map(m => {
+    const isA = m.a === id;
+    const opp = isA ? m.b : m.a;
+    const oppT = opp ? TEAMS[opp] : null;
+    const played = m.sa != null && m.sb != null;
+    const my = isA ? m.sa : m.sb, th = isA ? m.sb : m.sa;
+    let cls = "gl-up", res = m.status === "today" ? "•" : "–", pen = "";
+    if (played) {
+      if (my > th) { cls = "gl-w"; res = "W"; }
+      else if (my < th) { cls = "gl-l"; res = "L"; }
+      else if (m.d && m.d.pens) { const won = m.a === id; cls = won ? "gl-w" : "gl-l"; res = won ? "W" : "L"; pen = "p"; }
+      else { cls = "gl-d"; res = "D"; }
+    }
+    const stage = m.g ? "GRP " + m.g : m.round;
+    const score = played ? `${my}–${th}` : "";
+    return `<button class="gl-row ${cls}" data-match="${m.id}" title="View full match report">
+      <span class="gl-res">${res}<sup>${pen}</sup></span>
+      <span class="gl-stage">${stage}</span>
+      <span class="gl-opp">${isA ? "vs" : "@"} ${oppT ? oppT.flag + " " + oppT.name : "—"}</span>
+      <span class="gl-score">${score}</span>
+      <span class="gl-arrow">▸</span></button>`;
+  }).join("");
+  document.getElementById("country-gamelog").innerHTML = rows ||
+    "<p class='data-note'>No matches on record.</p>";
 }
 
 /* ---------------- tournament hub ---------------- */
@@ -192,7 +262,7 @@ function matchCard(m, compact = false) {
     m.status === "played" ? "W" : "VS";
   const cls = m.status === "today" ? "match-today" : m.status === "played" ? "match-played" : "match-up";
   const winnerA = m.status === "played" && (m.sa != null ? m.sa > m.sb : true);
-  return `<div class="match-card ${cls} ${compact ? "compact" : ""}">
+  return `<div class="match-card ${cls} ${compact ? "compact" : ""} clickable" data-match="${m.id}" title="View match report">
     <div class="match-meta">${m.round} · ${m.date}${m.venue ? " · " + m.venue : ""}${m.status === "today" ? ' <span class="live-tag">TODAY</span>' : ""}</div>
     <div class="match-line">
       ${m.a ? `<span class="mteam ${winnerA && m.status === "played" ? "mwin" : ""}">${teamChip(m.a)}</span>` : `<span class="mteam">${teamChip(null, { ph: m.ph })}</span>`}
@@ -265,10 +335,105 @@ function renderHistory() {
   document.getElementById("history-facts").innerHTML = FACTS_2026.map(f => `<li>▸ ${f}</li>`).join("");
 }
 
-/* chips anywhere open the country page */
+/* ---------------- match detail modal ---------------- */
+function goalStr(g) { return `${g.p} ${g.m}'${g.pen ? " (P)" : ""}${g.og ? " (OG)" : ""}`; }
+
+function statRow(label, a, b, pct) {
+  const total = (a + b) || 1;
+  const ap = pct ? a : Math.round(a / total * 100);
+  return `<div class="stat-row">
+    <span class="stat-num">${a}${pct ? "%" : ""}</span>
+    <div class="stat-mid"><div class="stat-label">${label}</div>
+      <div class="stat-track"><div class="stat-fill" style="width:${ap}%"></div></div></div>
+    <span class="stat-num">${b}${pct ? "%" : ""}</span></div>`;
+}
+
+function sideName(id, ph) {
+  if (!id) return `<span class="ms-tbd">${ph || "TBD"}</span>`;
+  const t = TEAMS[id];
+  return `<button class="chip ms-teamname" data-team="${id}">${t.flag} ${t.name}</button>`;
+}
+
+function matchModalHTML(m) {
+  const d = m.d || {};
+  const goals = d.goals || m.sc || [];
+  const summary = d.sum || m.note || "";
+  const stage = m.g ? "GROUP " + m.g + (m.md ? " · MD" + m.md : "") : m.round;
+  const meta = `${stage}${m.date ? " · " + m.date : ""}${m.venue ? " · " + m.venue : ""}`;
+  const played = m.sa != null && m.sb != null;
+
+  let head = `<div class="ms-meta">${meta}</div>
+    <div class="ms-score">
+      <div class="ms-side">${sideName(m.a, m.ph && m.ph.split(" vs ")[0])}</div>
+      <div class="ms-nums">${played ? `${m.sa} <span class="ms-dash">–</span> ${m.sb}` : `<span class="ms-vs">VS</span>`}</div>
+      <div class="ms-side">${sideName(m.b, m.ph && m.ph.split(" vs ")[1])}</div>
+    </div>`;
+  if (d.pens) head += `<div class="ms-pens">⚽ ${d.pens}</div>`;
+
+  // preview (unplayed)
+  if (!played && d.preview)
+    return head + `<div class="ms-preview">🔮 ${d.preview}</div>${modalFooter()}`;
+
+  // box score
+  let body = "";
+  if (goals.length) {
+    const colA = goals.filter(g => g.t === m.a).map(g => `<li>${goalStr(g)} ⚽</li>`).join("");
+    const colB = goals.filter(g => g.t === m.b).map(g => `<li>⚽ ${goalStr(g)}</li>`).join("");
+    body += `<div class="ms-section-title">— GOALS —</div>
+      <div class="ms-goals"><ul class="ms-goals-a">${colA || "<li class='ms-none'>—</li>"}</ul>
+      <ul class="ms-goals-b">${colB || "<li class='ms-none'>—</li>"}</ul></div>`;
+  }
+  if (d.cards && d.cards.length) {
+    body += `<div class="ms-cards">🟥 ${d.cards.map(c => `${c.p} ${c.m}' (${TEAMS[c.t].name})`).join(" · ")}</div>`;
+  }
+  if (d.stats) {
+    const s = d.stats;
+    body += `<div class="ms-section-title">— MATCH STATS —</div><div class="ms-stats">
+      ${statRow("POSSESSION", s.pos[0], s.pos[1], true)}
+      ${statRow("SHOTS", s.sh[0], s.sh[1])}
+      ${statRow("ON TARGET", s.sot[0], s.sot[1])}
+      ${statRow("CORNERS", s.cor[0], s.cor[1])}
+      ${statRow("FOULS", s.fouls[0], s.fouls[1])}</div>`;
+  }
+  if (d.motm) body += `<div class="ms-motm">⭐ PLAYER OF THE MATCH: <b>${d.motm.p}</b> (${TEAMS[d.motm.t].name})</div>`;
+  if (summary) body += `<div class="ms-summary">${summary}</div>`;
+  if (!goals.length && !summary) body += `<div class="ms-preview">Full box score for this match is coming in a future data patch.</div>`;
+
+  return head + body + modalFooter();
+}
+function modalFooter() {
+  return `<div class="ms-footer">Curated data patch · July 6, 2026. Scorelines match the standings; goal details are best-effort.</div>`;
+}
+
+function openMatchModal(id) {
+  const m = ALL_MATCHES[id];
+  if (!m) return;
+  document.getElementById("modal-content").innerHTML = matchModalHTML(m);
+  document.getElementById("match-modal").classList.remove("hidden");
+}
+function closeMatchModal() { document.getElementById("match-modal").classList.add("hidden"); }
+
+document.getElementById("modal-close").addEventListener("click", () => { SFX.blip(); closeMatchModal(); });
+document.getElementById("match-modal").addEventListener("click", e => {
+  if (e.target.id === "match-modal") closeMatchModal();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeMatchModal(); });
+
+/* ---------------- kit toggle ---------------- */
+document.querySelectorAll(".kit-btn").forEach(b =>
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".kit-btn").forEach(x => x.classList.toggle("active", x === b));
+    currentKitWhich = b.dataset.kit;
+    applyKit();
+    SFX.move();
+  }));
+
+/* ---------------- global click routing ---------------- */
 document.addEventListener("click", e => {
-  const chip = e.target.closest("[data-team]");
-  if (chip && !chip.classList.contains("roster-btn")) { SFX.blip(); openCountry(chip.dataset.team); }
+  const teamEl = e.target.closest("[data-team]");
+  if (teamEl && !teamEl.classList.contains("roster-btn")) { SFX.blip(); openCountry(teamEl.dataset.team); return; }
+  const matchEl = e.target.closest("[data-match]");
+  if (matchEl) { SFX.blip(); openMatchModal(matchEl.dataset.match); }
 });
 
 /* ---------------- boot ---------------- */

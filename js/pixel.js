@@ -76,6 +76,12 @@ class Globe {
     this.speed = 0.22;               // deg per frame
     this.markers = [];               // computed each frame
 
+    // drag state
+    this.dragging = false;
+    this.dragMoved = false;
+    this.lastX = 0; this.lastY = 0;
+    this.wasSpinning = true;
+
     // low-res offscreen buffer for the chunky look
     this.N = 96;
     this.buf = document.createElement("canvas");
@@ -84,10 +90,41 @@ class Globe {
     this.img = this.bctx.createImageData(this.N, this.N);
     this.ctx.imageSmoothingEnabled = false;
 
-    canvas.addEventListener("mousemove", e => this.hover(e));
+    // pointer drag-to-spin (mouse + touch)
+    canvas.addEventListener("mousedown", e => this.dragStart(e.clientX, e.clientY));
+    window.addEventListener("mousemove", e => this.dragMove(e.clientX, e.clientY, e));
+    window.addEventListener("mouseup", e => this.dragEnd(e));
+    canvas.addEventListener("mousemove", e => { if (!this.dragging) this.hover(e); });
     canvas.addEventListener("click", e => this.click(e));
     canvas.addEventListener("mouseleave", () => this.onHover(null));
+    canvas.addEventListener("touchstart", e => { const t = e.touches[0]; this.dragStart(t.clientX, t.clientY); }, { passive: true });
+    canvas.addEventListener("touchmove", e => { const t = e.touches[0]; this.dragMove(t.clientX, t.clientY); e.preventDefault(); }, { passive: false });
+    canvas.addEventListener("touchend", () => this.dragEnd());
     requestAnimationFrame(() => this.frame());
+  }
+
+  dragStart(x, y) {
+    this.dragging = true;
+    this.dragMoved = false;
+    this.lastX = x; this.lastY = y;
+    this.wasSpinning = this.spinning;
+    this.spinning = false;
+    this.cv.style.cursor = "grabbing";
+  }
+  dragMove(x, y) {
+    if (!this.dragging) return;
+    const dx = x - this.lastX, dy = y - this.lastY;
+    if (Math.abs(dx) + Math.abs(dy) > 3) this.dragMoved = true;
+    this.rot -= dx * 0.4;                                  // horizontal spin
+    this.tilt = Math.max(-1.2, Math.min(1.2, this.tilt + dy * 0.006)); // vertical tilt
+    this.lastX = x; this.lastY = y;
+    this.onHover(null);
+  }
+  dragEnd() {
+    if (!this.dragging) return;
+    this.dragging = false;
+    this.spinning = this.wasSpinning;                     // resume prior spin state
+    this.cv.style.cursor = "grab";
   }
 
   frame() {
@@ -173,6 +210,7 @@ class Globe {
     this.onHover(m ? m.id : null, e);
   }
   click(e) {
+    if (this.dragMoved) { this.dragMoved = false; return; }  // ignore click that ended a drag
     const m = this.pickAt(e);
     if (m) this.onPick(m.id);
   }
@@ -207,6 +245,7 @@ class PlayerSprite {
     requestAnimationFrame(() => this.frame());
   }
   stop() { this.running = false; this.cv.onclick = null; }
+  setKit(kit) { this.kit = kit; }
 
   frame() {
     if (!this.running) return;
