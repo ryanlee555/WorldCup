@@ -370,9 +370,13 @@ function matchModalHTML(m) {
     </div>`;
   if (d.pens) head += `<div class="ms-pens">⚽ ${d.pens}</div>`;
 
+  const espnLink = m.espnId
+    ? `<a class="ms-espn-link" href="https://www.espn.com/soccer/match/_/gameId/${m.espnId}" target="_blank" rel="noopener">📊 View full stats on ESPN →</a>`
+    : "";
+
   // preview (unplayed)
   if (!played && d.preview)
-    return head + `<div class="ms-preview">🔮 ${d.preview}</div>${modalFooter()}`;
+    return head + `<div class="ms-preview">🔮 ${d.preview}</div>${espnLink}${modalFooter()}`;
 
   // box score
   let body = "";
@@ -402,7 +406,7 @@ function matchModalHTML(m) {
   if (summary) body += `<div class="ms-summary">${summary}</div>`;
   if (!goals.length && !summary) body += `<div class="ms-preview">Full box score for this match is coming in a future data patch.</div>`;
 
-  return head + body + modalFooter();
+  return head + body + espnLink + modalFooter();
 }
 function modalFooter() {
   return `<div class="ms-footer">Researched from live tournament coverage (ESPN, FIFA/Opta, Al Jazeera, Sky Sports) as of July 6, 2026. A few individual goal minutes or stats weren't reported and are shown as scoreline-only.</div>`;
