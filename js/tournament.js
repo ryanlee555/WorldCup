@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 6, 2026 (evening) — Round of 16 in progress.
+   DATA PATCH: July 7, 2026 — Round of 16 finale (6 of 8 played).
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -109,18 +109,20 @@ const MATCHES = [
   { id:"r16-5", round:"R16", date:"JUL 6", a:"por", b:"esp", sa:0, sb:1, status:"played", note:"MERINO 90+1' WINNER · RONALDO'S WORLD CUP CAREER ENDS", venue:"DALLAS STADIUM", espnId:760506,
     d:{ goals:[{t:"esp",p:"Mikel Merino",m:91}], stats:{pos:[44,56],sh:[9,15],sot:[2,6],xg:[0.56,1.77]}, motm:{t:"esp",p:"Mikel Merino"},
         sum:"An Iberian derby settled at the death: Ferran Torres slipped in Mikel Merino to score in the first minute of stoppage time and send the Euro champions through. Portugal managed just 0.56 xG, and the final whistle ended Cristiano Ronaldo's record sixth and final World Cup without the trophy that always eluded him." } },
-  { id:"r16-6", round:"R16", date:"JUL 6 · 8PM ET", a:"usa", b:"bel", sa:null, sb:null, status:"today", venue:"SEATTLE STADIUM",
-    d:{ preview:"Last host standing. A roaring Seattle crowd behind Pulisic's USA, against a Belgium side that just survived the R32 classic of the tournament. Win and the co-hosts reach the quarters. Kick-off 8PM ET." } },
-  { id:"r16-7", round:"R16", date:"JUL 7 · 12PM ET", a:"arg", b:"egy", sa:null, sb:null, status:"upcoming", venue:"ATLANTA STADIUM",
+  { id:"r16-6", round:"R16", date:"JUL 6", a:"usa", b:"bel", sa:1, sb:4, status:"played", note:"DE KETELAERE ×2 — LAST HOST FALLS", venue:"SEATTLE STADIUM", espnId:760507,
+    d:{ goals:[{t:"bel",p:"De Ketelaere",m:9},{t:"usa",p:"Tillman",m:31},{t:"bel",p:"De Ketelaere",m:33},{t:"bel",p:"Vanaken",m:57},{t:"bel",p:"Lukaku",m:93}],
+        stats:{sh:[7,15],xg:[0.67,2.15]}, motm:{t:"bel",p:"Charles De Ketelaere"},
+        sum:"The last host standing fell hard. De Ketelaere struck twice in the first half — his second just two minutes after Tillman's equaliser — and Vanaken and Lukaku added gloss. Belgium's clinical finishing (2.15 xG to 0.67) ended the USA's home World Cup in the Round of 16." } },
+  { id:"r16-7", round:"R16", date:"JUL 7 · 12PM ET", a:"arg", b:"egy", sa:null, sb:null, status:"today", venue:"ATLANTA STADIUM",
     d:{ preview:"Messi vs Salah — a dream marquee. The champions, fresh off surviving Cape Verde, meet Salah's Pharaohs and their shootout heroics. Atlanta, 12PM ET, Jul 7." } },
-  { id:"r16-8", round:"R16", date:"JUL 7 · 4PM ET", a:"sui", b:"col", sa:null, sb:null, status:"upcoming", venue:"VANCOUVER BC PLACE",
+  { id:"r16-8", round:"R16", date:"JUL 7 · 4PM ET", a:"sui", b:"col", sa:null, sb:null, status:"today", venue:"VANCOUVER BC PLACE",
     d:{ preview:"Two quietly dangerous sides. Switzerland's ruthless efficiency against Luis Díaz and a confident Colombia. The winner gets a very winnable quarterfinal. Vancouver, 4PM ET." } },
 
   /* Quarterfinals — Jul 9–12 */
   { id:"qf-1", round:"QF", date:"JUL 9 · 4PM ET", a:"fra", b:"mar", sa:null, sb:null, status:"upcoming", venue:"BOSTON STADIUM",
     d:{ preview:"Tournament favourites France (who haven't conceded in the knockouts) against the fearless Atlas Lions, 2022's semifinalists. A blockbuster in Boston." } },
-  { id:"qf-2", round:"QF", date:"JUL 10 · 12PM ET", a:"esp", b:null, ph:"SPAIN vs USA/BEL", sa:null, sb:null, status:"tbd", venue:"LOS ANGELES STADIUM",
-    d:{ preview:"Spain, through after edging Portugal, await the winner of USA–Belgium in Los Angeles for a place in the semifinals." } },
+  { id:"qf-2", round:"QF", date:"JUL 10 · 12PM ET", a:"esp", b:"bel", sa:null, sb:null, status:"upcoming", venue:"LOS ANGELES STADIUM",
+    d:{ preview:"Spain, who edged Portugal, against a Belgium side fresh off dismantling the USA 4-1. De Bruyne, Tielemans and De Ketelaere against the Euro champions in Los Angeles for a semifinal place." } },
   { id:"qf-3", round:"QF", date:"JUL 11 · 5PM ET", a:"nor", b:"eng", sa:null, sb:null, status:"upcoming", venue:"MIAMI STADIUM",
     d:{ preview:"Haaland vs the Three Lions. Norway's conquerors of Brazil against Bellingham & Kane's England. Golden Boot fireworks expected in Miami." } },
   { id:"qf-4", round:"QF", date:"JUL 12 · 8PM ET", a:null, b:null, ph:"ARG/EGY vs SUI/COL", sa:null, sb:null, status:"tbd", venue:"KANSAS CITY STADIUM",
@@ -153,9 +155,8 @@ const ODDS = [
   { t:"eng", line:"+500",  tier:"CONTENDER",  note:"Bellingham & Kane firing" },
   { t:"esp", line:"+600",  tier:"CONTENDER",  note:"Euro champs · edged Portugal into the QFs" },
   { t:"nor", line:"n/a",   tier:"DARK HORSE", note:"Haaland: 7 goals & surging" },
-  { t:"usa", line:"n/a",   tier:"DARK HORSE", note:"Last host standing" },
   { t:"mar", line:"n/a",   tier:"DARK HORSE", note:"2022 semifinalists, fearless" },
-  { t:"bel", line:"n/a",   tier:"LONGSHOT",   note:"Survivors of the R32 classic" },
+  { t:"bel", line:"n/a",   tier:"DARK HORSE", note:"Routed the USA 4-1; face Spain next" },
   { t:"sui", line:"n/a",   tier:"LONGSHOT",   note:"Quietly clinical" },
   { t:"col", line:"n/a",   tier:"LONGSHOT",   note:"Díaz in form" },
   { t:"egy", line:"n/a",   tier:"LONGSHOT",   note:"Salah vs destiny (and Messi)" }
@@ -163,11 +164,11 @@ const ODDS = [
 
 /* ---- Live banner ---- */
 const LIVE_TODAY = {
-  label: "⚡ JUL 6 — ROUND OF 16",
+  label: "⚡ TODAY — JUL 7 · R16 FINALE",
   items: [
-    "FT: SPAIN 1-0 PORTUGAL — Merino's stoppage-time winner ends Ronaldo's World Cup career",
-    "LIVE: USA vs BELGIUM · 8PM ET · SEATTLE — last host standing fights on",
-    "NEXT: ARGENTINA vs EGYPT & SWITZERLAND vs COLOMBIA — Jul 7"
+    "MESSI vs SALAH: ARGENTINA vs EGYPT · 12PM ET · ATLANTA",
+    "SWITZERLAND vs COLOMBIA · 4PM ET · VANCOUVER — last two R16 spots",
+    "DONE: Spain edged Portugal; Belgium routed the USA 4-1 to reach the QFs"
   ]
 };
 

@@ -193,7 +193,7 @@ const TEAMS = {
     legends: ["Christian Pulisic", "Landon Donovan", "Tim Howard", "Clint Dempsey"],
     wc: "12th appearance. Semifinalists at the very first Cup (1930); hosts in 1994 and 2026.",
     fact: "The 1994 USA World Cup still holds the all-time attendance record — until this one likely breaks it.",
-    status: "🟦 WON GROUP D (6 PTS) → BEAT BOSNIA 2-0 → FACES BELGIUM TONIGHT IN SEATTLE — LAST HOST STANDING!"
+    status: "🟥 WON GROUP D (6 PTS) → BEAT BOSNIA 2-0 → ELIMINATED 4-1 BY BELGIUM IN THE R16. THE HOME WORLD CUP ENDS IN THE LAST 16."
   },
   par: {
     name: "PARAGUAY", flag: "🇵🇾", group: "D", lat: -23.4, lon: -58.4,
@@ -367,7 +367,7 @@ const TEAMS = {
     legends: ["Kevin De Bruyne", "Eden Hazard", "Thibaut Courtois", "Jérémy Doku"],
     wc: "15th appearance. Third place in 2018; No. 1 in the world for years without a trophy — yet.",
     fact: "Fries were (Belgians insist) invented in Belgium, not France. Fighting words.",
-    status: "🟦 ADVANCED FROM GROUP G → OUTLASTED SENEGAL 3-2 AET → FACES THE USA TONIGHT IN SEATTLE."
+    status: "🟦 ADVANCED FROM GROUP G → OUTLASTED SENEGAL 3-2 AET → ROUTED THE USA 4-1 (DE KETELAERE ×2) → QUARTERFINAL VS SPAIN, JUL 10 IN LA."
   },
   egy: {
     name: "EGYPT", flag: "🇪🇬", group: "G", lat: 26.8, lon: 30.0,
