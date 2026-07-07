@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 7, 2026 — Round of 16 finale (6 of 8 played).
+   DATA PATCH: July 7, 2026 (late) — Round of 16 finale (7 of 8 played).
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -113,8 +113,10 @@ const MATCHES = [
     d:{ goals:[{t:"bel",p:"De Ketelaere",m:9},{t:"usa",p:"Tillman",m:31},{t:"bel",p:"De Ketelaere",m:33},{t:"bel",p:"Vanaken",m:57},{t:"bel",p:"Lukaku",m:93}],
         stats:{sh:[7,15],xg:[0.67,2.15]}, motm:{t:"bel",p:"Charles De Ketelaere"},
         sum:"The last host standing fell hard. De Ketelaere struck twice in the first half — his second just two minutes after Tillman's equaliser — and Vanaken and Lukaku added gloss. Belgium's clinical finishing (2.15 xG to 0.67) ended the USA's home World Cup in the Round of 16." } },
-  { id:"r16-7", round:"R16", date:"JUL 7 · 12PM ET", a:"arg", b:"egy", sa:null, sb:null, status:"today", venue:"ATLANTA STADIUM",
-    d:{ preview:"Messi vs Salah — a dream marquee. The champions, fresh off surviving Cape Verde, meet Salah's Pharaohs and their shootout heroics. Atlanta, 12PM ET, Jul 7." } },
+  { id:"r16-7", round:"R16", date:"JUL 7", a:"arg", b:"egy", sa:3, sb:2, status:"played", note:"MESSI-INSPIRED COMEBACK FROM 2-0 DOWN · ENZO 90+2' WINNER", venue:"ATLANTA STADIUM", espnId:760509,
+    d:{ goals:[{t:"egy",p:"Yasser Ibrahim",m:15},{t:"egy",p:"Zizo",m:67},{t:"arg",p:"Cristian Romero",m:79},{t:"arg",p:"Messi",m:83},{t:"arg",p:"Enzo Fernández",m:92}],
+        stats:{sh:[19,5],xg:[2.8,0.98]}, motm:{t:"arg",p:"Lionel Messi"},
+        sum:"Two-nil down and staring at the exit, the champions roared back. Messi — who had a first-half penalty saved by Shobeir — headed on for Romero on 79', rifled in an equaliser on 83', then teed up Enzo Fernández's 90+2' winner. Messi's 8th goal moved him clear as the tournament's top scorer in a record sixth straight World Cup knockout appearance." } },
   { id:"r16-8", round:"R16", date:"JUL 7 · 4PM ET", a:"sui", b:"col", sa:null, sb:null, status:"today", venue:"VANCOUVER BC PLACE",
     d:{ preview:"Two quietly dangerous sides. Switzerland's ruthless efficiency against Luis Díaz and a confident Colombia. The winner gets a very winnable quarterfinal. Vancouver, 4PM ET." } },
 
@@ -125,8 +127,8 @@ const MATCHES = [
     d:{ preview:"Spain, who edged Portugal, against a Belgium side fresh off dismantling the USA 4-1. De Bruyne, Tielemans and De Ketelaere against the Euro champions in Los Angeles for a semifinal place." } },
   { id:"qf-3", round:"QF", date:"JUL 11 · 5PM ET", a:"nor", b:"eng", sa:null, sb:null, status:"upcoming", venue:"MIAMI STADIUM",
     d:{ preview:"Haaland vs the Three Lions. Norway's conquerors of Brazil against Bellingham & Kane's England. Golden Boot fireworks expected in Miami." } },
-  { id:"qf-4", round:"QF", date:"JUL 12 · 8PM ET", a:null, b:null, ph:"ARG/EGY vs SUI/COL", sa:null, sb:null, status:"tbd", venue:"KANSAS CITY STADIUM",
-    d:{ preview:"The winners of Argentina–Egypt and Switzerland–Colombia collide in Kansas City for a semifinal spot." } },
+  { id:"qf-4", round:"QF", date:"JUL 12 · 8PM ET", a:"arg", b:null, ph:"ARGENTINA vs SUI/COL", sa:null, sb:null, status:"tbd", venue:"KANSAS CITY STADIUM",
+    d:{ preview:"Argentina, through after their comeback over Egypt, await the winner of Switzerland–Colombia in Kansas City for a place in the semifinals." } },
 
   /* Semifinals & Final */
   { id:"sf-1", round:"SF", date:"JUL 14", a:null, b:null, ph:"QF1 WINNER vs QF2 WINNER", sa:null, sb:null, status:"tbd", venue:"DALLAS STADIUM",
@@ -158,17 +160,16 @@ const ODDS = [
   { t:"mar", line:"n/a",   tier:"DARK HORSE", note:"2022 semifinalists, fearless" },
   { t:"bel", line:"n/a",   tier:"DARK HORSE", note:"Routed the USA 4-1; face Spain next" },
   { t:"sui", line:"n/a",   tier:"LONGSHOT",   note:"Quietly clinical" },
-  { t:"col", line:"n/a",   tier:"LONGSHOT",   note:"Díaz in form" },
-  { t:"egy", line:"n/a",   tier:"LONGSHOT",   note:"Salah vs destiny (and Messi)" }
+  { t:"col", line:"n/a",   tier:"LONGSHOT",   note:"Díaz in form" }
 ];
 
 /* ---- Live banner ---- */
 const LIVE_TODAY = {
-  label: "⚡ TODAY — JUL 7 · R16 FINALE",
+  label: "⚡ JUL 7 — LAST R16 GAME",
   items: [
-    "MESSI vs SALAH: ARGENTINA vs EGYPT · 12PM ET · ATLANTA",
-    "SWITZERLAND vs COLOMBIA · 4PM ET · VANCOUVER — last two R16 spots",
-    "DONE: Spain edged Portugal; Belgium routed the USA 4-1 to reach the QFs"
+    "LIVE: SWITZERLAND vs COLOMBIA · VANCOUVER — the final quarterfinal spot",
+    "FT: ARGENTINA 3-2 EGYPT — Messi inspires a comeback from 2-0 down, Enzo wins it 90+2'",
+    "NEXT: QUARTERFINALS BEGIN JUL 9 — FRANCE vs MOROCCO in Boston"
   ]
 };
 
@@ -223,5 +224,5 @@ const FACTS_2026 = [
   "A new round: the Round of 32 — group winners, runners-up and 8 best third-placed teams advance.",
   "Messi (39) and Ronaldo (41) both playing — their SIXTH World Cups, 20 years after their first.",
   "Paraguay's win over Germany earned a national holiday back home.",
-  "Erling Haaland and Lionel Messi share the Golden Boot lead on 7 goals apiece."
+  "Lionel Messi leads the Golden Boot race with 8 goals, ahead of Haaland and Mbappé on 7."
 ];

@@ -381,7 +381,7 @@ const TEAMS = {
     legends: ["Mohamed Salah", "Mohamed Aboutrika", "Essam El-Hadary", "Omar Marmoush"],
     wc: "4th appearance. Africa's first-ever World Cup side (1934); record 7× African champions.",
     fact: "Essam El-Hadary kept goal at a World Cup aged 45 — the oldest player ever.",
-    status: "🟦 ADVANCED FROM GROUP G → BEAT AUSTRALIA ON PENALTIES → SALAH VS MESSI: ARGENTINA AWAITS, JUL 7."
+    status: "🟥 ADVANCED FROM GROUP G → BEAT AUSTRALIA ON PENALTIES → LED ARGENTINA 2-0 BEFORE FALLING 3-2 IN THE R16. A HEARTBREAKING EXIT FOR SALAH'S PHARAOHS."
   },
   irn: {
     name: "IRAN", flag: "🇮🇷", group: "G", lat: 32.0, lon: 53.7,
@@ -524,7 +524,7 @@ const TEAMS = {
     culture: "Friluftsliv (open-air life), Ibsen and Munch, cabins without wifi and total tournament fever right now.",
     legends: ["Erling Haaland", "Martin Ødegaard", "Ole Gunnar Solskjær"],
     wc: "4th appearance — first since 1998, and already their best ever after KO'ing Brazil.",
-    fact: "Haaland's 7 goals lead the Golden Boot race — scored in just 5 matches.",
+    fact: "Haaland has 7 goals in just 6 matches — one behind Messi's tournament-leading 8.",
     status: "🟨 ADVANCED FROM GROUP I → SANK IVORY COAST → TOPPLED BRAZIL WITH A HAALAND BRACE → QUARTERFINAL VS ENGLAND IN MIAMI, JUL 11."
   },
 
@@ -541,7 +541,7 @@ const TEAMS = {
     legends: ["Lionel Messi", "Diego Maradona", "Mario Kempes", "Gabriel Batistuta", "Julián Álvarez"],
     wc: "19th appearance. Champions 1978, 1986, 2022 — chasing back-to-back titles, last done by Brazil in 1962.",
     fact: "Messi, 39, is playing his SIXTH World Cup — a men's record.",
-    status: "🟦 WON GROUP J → SURVIVED CAPE VERDE 3-2 AET → MESSI VS SALAH: EGYPT NEXT, JUL 7 IN ATLANTA. +470 SECOND-FAVORITES."
+    status: "🟦 WON GROUP J → SURVIVED CAPE VERDE 3-2 AET → ROARED BACK FROM 2-0 DOWN TO BEAT EGYPT 3-2 (ENZO 90+2') → QUARTERFINAL VS SUI/COL, JUL 12. MESSI LEADS THE GOLDEN BOOT ON 8."
   },
   alg: {
     name: "ALGERIA", flag: "🇩🇿", group: "J", lat: 28.0, lon: 2.6,
