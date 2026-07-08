@@ -119,7 +119,7 @@ const TEAMS = {
     legends: ["Granit Xhaka", "Xherdan Shaqiri", "Yann Sommer", "Breel Embolo"],
     wc: "13th appearance. Quarterfinalists in 1934, 1938 and 1954 (as hosts) — chasing that mark again.",
     fact: "Switzerland has been officially neutral since 1815 — except on matchday.",
-    status: "🟦 WON GROUP B (7 PTS) → BEAT ALGERIA 2-0 → FACES COLOMBIA IN THE ROUND OF 16, JUL 7."
+    status: "🟦 WON GROUP B (7 PTS) → BEAT ALGERIA 2-0 → 0-0 VS COLOMBIA, WON 4-3 ON PENS → QUARTERFINAL VS ARGENTINA, JUL 12. FIRST QF SINCE 1954!"
   },
 
   /* ---------------- GROUP C ---------------- */
@@ -641,7 +641,7 @@ const TEAMS = {
     legends: ["Carlos Valderrama", "James Rodríguez", "Falcao", "Luis Díaz"],
     wc: "7th appearance. James won the 2014 Golden Boot with THAT volley.",
     fact: "Colombia is the world's #1 source of emeralds and second-most biodiverse country.",
-    status: "🟨 WON GROUP K (7 PTS) → EDGED GHANA 1-0 → FACES SWITZERLAND IN VANCOUVER, JUL 7."
+    status: "🟥 WON GROUP K (7 PTS) → EDGED GHANA 1-0 → 0-0 VS SWITZERLAND, LOST 4-3 ON PENALTIES IN THE R16. OUT AFTER 120 GOALLESS MINUTES."
   },
 
   /* ---------------- GROUP L ---------------- */

@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 7, 2026 (late) — Round of 16 finale (7 of 8 played).
+   DATA PATCH: July 8, 2026 — Round of 16 complete; quarterfinals set.
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -117,8 +117,9 @@ const MATCHES = [
     d:{ goals:[{t:"egy",p:"Yasser Ibrahim",m:15},{t:"egy",p:"Zizo",m:67},{t:"arg",p:"Cristian Romero",m:79},{t:"arg",p:"Messi",m:83},{t:"arg",p:"Enzo Fernández",m:92}],
         stats:{sh:[19,5],xg:[2.8,0.98]}, motm:{t:"arg",p:"Lionel Messi"},
         sum:"Two-nil down and staring at the exit, the champions roared back. Messi — who had a first-half penalty saved by Shobeir — headed on for Romero on 79', rifled in an equaliser on 83', then teed up Enzo Fernández's 90+2' winner. Messi's 8th goal moved him clear as the tournament's top scorer in a record sixth straight World Cup knockout appearance." } },
-  { id:"r16-8", round:"R16", date:"JUL 7 · 4PM ET", a:"sui", b:"col", sa:null, sb:null, status:"today", venue:"VANCOUVER BC PLACE",
-    d:{ preview:"Two quietly dangerous sides. Switzerland's ruthless efficiency against Luis Díaz and a confident Colombia. The winner gets a very winnable quarterfinal. Vancouver, 4PM ET." } },
+  { id:"r16-8", round:"R16", date:"JUL 7", a:"sui", b:"col", sa:0, sb:0, status:"played", note:"SWITZERLAND WIN 4-3 ON PENALTIES", venue:"VANCOUVER BC PLACE", espnId:760508,
+    d:{ pens:"Switzerland won 4-3 on penalties", motm:{t:"sui",p:"Gregor Kobel (GK)"},
+        sum:"A goalless, cagey 120 minutes in Vancouver went to a shootout, where Ruben Vargas slotted the decisive spot-kick to send Switzerland into their first World Cup quarterfinal since 1954 — and a date with Messi's Argentina." } },
 
   /* Quarterfinals — Jul 9–12 */
   { id:"qf-1", round:"QF", date:"JUL 9 · 4PM ET", a:"fra", b:"mar", sa:null, sb:null, status:"upcoming", venue:"BOSTON STADIUM",
@@ -127,8 +128,8 @@ const MATCHES = [
     d:{ preview:"Spain, who edged Portugal, against a Belgium side fresh off dismantling the USA 4-1. De Bruyne, Tielemans and De Ketelaere against the Euro champions in Los Angeles for a semifinal place." } },
   { id:"qf-3", round:"QF", date:"JUL 11 · 5PM ET", a:"nor", b:"eng", sa:null, sb:null, status:"upcoming", venue:"MIAMI STADIUM",
     d:{ preview:"Haaland vs the Three Lions. Norway's conquerors of Brazil against Bellingham & Kane's England. Golden Boot fireworks expected in Miami." } },
-  { id:"qf-4", round:"QF", date:"JUL 12 · 8PM ET", a:"arg", b:null, ph:"ARGENTINA vs SUI/COL", sa:null, sb:null, status:"tbd", venue:"KANSAS CITY STADIUM",
-    d:{ preview:"Argentina, through after their comeback over Egypt, await the winner of Switzerland–Colombia in Kansas City for a place in the semifinals." } },
+  { id:"qf-4", round:"QF", date:"JUL 12 · 8PM ET", a:"arg", b:"sui", sa:null, sb:null, status:"upcoming", venue:"KANSAS CITY STADIUM",
+    d:{ preview:"Messi's Argentina, fresh off their comeback over Egypt, against a Switzerland side that has ground out results and won a shootout to get here. Kansas City, Jul 12, for a semifinal place." } },
 
   /* Semifinals & Final */
   { id:"sf-1", round:"SF", date:"JUL 14", a:null, b:null, ph:"QF1 WINNER vs QF2 WINNER", sa:null, sb:null, status:"tbd", venue:"DALLAS STADIUM",
@@ -159,17 +160,16 @@ const ODDS = [
   { t:"nor", line:"n/a",   tier:"DARK HORSE", note:"Haaland: 7 goals & surging" },
   { t:"mar", line:"n/a",   tier:"DARK HORSE", note:"2022 semifinalists, fearless" },
   { t:"bel", line:"n/a",   tier:"DARK HORSE", note:"Routed the USA 4-1; face Spain next" },
-  { t:"sui", line:"n/a",   tier:"LONGSHOT",   note:"Quietly clinical" },
-  { t:"col", line:"n/a",   tier:"LONGSHOT",   note:"Díaz in form" }
+  { t:"sui", line:"n/a",   tier:"LONGSHOT",   note:"Shootout win over Colombia; face Argentina" }
 ];
 
 /* ---- Live banner ---- */
 const LIVE_TODAY = {
-  label: "⚡ JUL 7 — LAST R16 GAME",
+  label: "⚡ QUARTERFINALS — LAST 8",
   items: [
-    "LIVE: SWITZERLAND vs COLOMBIA · VANCOUVER — the final quarterfinal spot",
-    "FT: ARGENTINA 3-2 EGYPT — Messi inspires a comeback from 2-0 down, Enzo wins it 90+2'",
-    "NEXT: QUARTERFINALS BEGIN JUL 9 — FRANCE vs MOROCCO in Boston"
+    "JUL 9 · FRANCE vs MOROCCO — a 2022 semifinal rematch in Boston",
+    "JUL 10 · SPAIN vs BELGIUM · LA  ·  JUL 11 · NORWAY vs ENGLAND · MIAMI",
+    "JUL 12 · ARGENTINA vs SWITZERLAND · KANSAS CITY — Switzerland won a shootout to get here"
   ]
 };
 
