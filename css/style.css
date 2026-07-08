@@ -166,11 +166,6 @@ canvas { image-rendering: pixelated; }
 /* ============ COUNTRY ============ */
 #screen-country { position: relative; }
 .country-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
-.motif {
-  position: absolute; opacity: .16; filter: grayscale(15%);
-  animation: floaty 7s ease-in-out infinite;
-}
-@keyframes floaty { 50% { transform: translateY(-18px) rotate(6deg); } }
 .country-content { max-width: 1200px; margin: 0 auto; padding: 18px; }
 .back-btn { margin-bottom: 14px; }
 .country-header {
@@ -410,4 +405,162 @@ canvas { image-rendering: pixelated; }
   .odds-row { grid-template-columns: 150px 1fr 60px; }
   .odds-tier, .odds-note { display: none; }
   .screen-title { font-size: 15px; }
+}
+
+/* ============================================================
+   COUNTRY SCENES — cinematic backdrops, loader & dive-in reveal
+   ============================================================ */
+
+/* ---------- scene layers ---------- */
+.country-bg.scene { background: #04040f; }
+.sc-zoom { position: absolute; inset: 0; overflow: hidden;
+  transform: scale(1.32) translateY(-2.5%);
+  filter: blur(10px) brightness(1.55) saturate(1.35);
+}
+#screen-country.settled .sc-zoom {
+  transform: none; filter: none;
+  transition: transform 1.15s cubic-bezier(.2, .75, .25, 1), filter 1.15s ease;
+}
+.sc-sky { position: absolute; inset: 0; }
+.sc-svg { position: absolute; left: -3%; bottom: 0; width: 106%; height: 100%; }
+.sc-far  { animation: scSway 95s ease-in-out infinite alternate; }
+.sc-mid  { animation: scSway 70s ease-in-out infinite alternate-reverse; }
+.sc-near { animation: scSwayBig 55s ease-in-out infinite alternate; }
+@keyframes scSway    { from { transform: translateX(-.7%); } to { transform: translateX(.7%); } }
+@keyframes scSwayBig { from { transform: translateX(-1.4%); } to { transform: translateX(1.4%); } }
+.sc-orb { position: absolute; border-radius: 50%; transform: translate(-50%, -50%); }
+.sc-orb.crescent { box-shadow: none !important; }
+.sc-orb.crescent::after {
+  content: ""; position: absolute; inset: -6%; border-radius: 50%;
+  transform: translate(-34%, -24%); background: rgba(10, 10, 30, .97);
+}
+.sc-fx { position: absolute; inset: 0; pointer-events: none; }
+.sc-scrim { position: absolute; inset: 0; }
+
+/* ---------- ambient FX ---------- */
+.fx-cloud { position: absolute; left: -30%; animation: cloudDrift linear infinite; filter: blur(2px); }
+@keyframes cloudDrift { from { transform: translateX(-40vw); } to { transform: translateX(140vw); } }
+.fx-stars { position: absolute; inset: 0; animation: twinkle 3.4s steps(2) infinite; }
+.fx-aurora {
+  position: absolute; width: 62%; height: 46%;
+  filter: blur(26px); opacity: .42; transform: skewY(-9deg);
+  mix-blend-mode: screen; animation: auroraWave 13s ease-in-out infinite alternate;
+}
+@keyframes auroraWave {
+  from { transform: skewY(-9deg) translateX(-4%) scaleY(.9); opacity: .3; }
+  50%  { opacity: .55; }
+  to   { transform: skewY(-6deg) translateX(5%) scaleY(1.15); opacity: .38; }
+}
+.fx-flake {
+  position: absolute; top: -3%; border-radius: 50%; background: #fff;
+  animation: flakeFall linear infinite, flakeSway ease-in-out infinite alternate;
+}
+@keyframes flakeFall { to { transform: translateY(108vh); } }
+@keyframes flakeSway { from { margin-left: -14px; } to { margin-left: 14px; } }
+.fx-grain { position: absolute; left: -6%; height: 2px; border-radius: 2px; animation: grainBlow linear infinite; }
+@keyframes grainBlow { to { transform: translateX(115vw) translateY(-6vh); } }
+.fx-petal {
+  position: absolute; top: -3%; border-radius: 60% 0 60% 0; opacity: .85;
+  animation: petalFall linear infinite, petalSpin ease-in-out infinite alternate;
+}
+@keyframes petalFall { to { transform: translateY(110vh) translateX(9vw); } }
+@keyframes petalSpin { from { rotate: 0deg; } to { rotate: 200deg; } }
+.fx-fly {
+  position: absolute; width: 4px; height: 4px; border-radius: 50%;
+  animation: flyRoam ease-in-out infinite alternate, flyPulse ease-in-out infinite;
+}
+@keyframes flyRoam { to { transform: translate(var(--dx), var(--dy)); } }
+@keyframes flyPulse { 0%, 100% { opacity: .1; } 50% { opacity: 1; } }
+.fx-butterfly { position: absolute; animation: flyRoam ease-in-out infinite alternate; }
+.fx-butterfly .bwing  { transform-origin: 10px 7px; animation: bflapL .34s ease-in-out infinite alternate; }
+.fx-butterfly .bwing2 { transform-origin: 10px 7px; animation: bflapR .34s ease-in-out infinite alternate; }
+@keyframes bflapL { to { transform: scaleX(.4); } }
+@keyframes bflapR { to { transform: scaleX(.4); } }
+.fx-bird { position: absolute; left: -6%; animation: birdCross linear infinite; }
+.fx-bird .flap { transform-origin: 12px 6px; animation: birdFlap .5s steps(2) infinite alternate; }
+@keyframes birdCross { to { transform: translateX(118vw) translateY(-4vh); } }
+@keyframes birdFlap { to { transform: scaleY(.55) translateY(2px); } }
+.fx-mist { position: absolute; border-radius: 50%; animation: mistDrift ease-in-out infinite alternate; }
+@keyframes mistDrift { to { transform: translateX(16vw); } }
+.fx-spark { position: absolute; width: 3px; height: 3px; border-radius: 50%; animation: sparkTw ease-in-out infinite; }
+@keyframes sparkTw { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1.4); } }
+.wlit { animation: winFlick 7s steps(2) infinite; }
+@keyframes winFlick { 0%, 92%, 100% { opacity: .9; } 95% { opacity: .15; } }
+.shimmer { animation: shim 4.5s ease-in-out infinite; }
+@keyframes shim { 0%, 100% { opacity: .08; transform: translateX(0); } 50% { opacity: .4; transform: translateX(60px); } }
+.mill { animation: millSpin 26s linear infinite; }
+@keyframes millSpin { to { transform: rotate(360deg); } }
+.beam { animation: beamPulse 3.2s ease-in-out infinite; }
+@keyframes beamPulse { 0%, 100% { opacity: .12; } 50% { opacity: .5; } }
+.bob { animation: boatBob 4.2s ease-in-out infinite alternate; }
+@keyframes boatBob { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(7px) rotate(1.5deg); } }
+
+/* ---------- flourish bird swoosh ---------- */
+.flourish {
+  position: fixed; inset: 0; z-index: 60; pointer-events: none;
+  animation: swoop 2.5s cubic-bezier(.32, .05, .35, 1) forwards;
+}
+.flourish-bird { position: absolute; left: 0; top: 0; filter: drop-shadow(0 6px 10px rgba(0,0,0,.45)); }
+.flourish .fwing  { transform-origin: 80px 52px; animation: wingFlap .3s steps(2) infinite alternate; }
+.flourish .fwing2 { transform-origin: 96px 56px; animation: wingFlap2 .3s steps(2) infinite alternate; }
+@keyframes wingFlap2 { to { transform: rotate(-22deg); } }
+@keyframes wingFlap { to { transform: rotate(34deg); } }
+@keyframes swoop {
+  0%   { transform: translate(96vw, -16vh) scale(.55) rotate(14deg); opacity: 0; }
+  12%  { opacity: 1; }
+  45%  { transform: translate(44vw, 36vh) scale(1.15) rotate(-4deg); }
+  100% { transform: translate(-26vw, 88vh) scale(1.6) rotate(-16deg); opacity: 1; }
+}
+
+/* ---------- loading screen ---------- */
+.country-loader {
+  position: fixed; inset: 0; z-index: 9500;
+  background: #04040f;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  clip-path: circle(135% at 50% 44%);
+}
+.country-loader.iris { animation: irisOut .75s cubic-bezier(.65, 0, .8, .4) forwards; }
+@keyframes irisOut { to { clip-path: circle(0% at 50% 44%); } }
+.loader-flag { font-size: 58px; animation: bounce 1.2s steps(3) infinite; }
+.loader-title { color: var(--gold); font-size: 15px; margin-top: 18px; letter-spacing: 2px;
+  text-shadow: 3px 3px 0 rgba(0,0,0,.6); }
+.loader-title .loader-dest { color: var(--cyan); }
+.loader-ring { position: relative; width: 64px; height: 64px; margin: 26px auto 0;
+  animation: ringStep 1s steps(8) infinite; }
+.loader-ring i { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px;
+  background: var(--gold); }
+.loader-ring i:nth-child(1) { transform: translate(0, -26px); opacity: 1; }
+.loader-ring i:nth-child(2) { transform: translate(18px, -18px); opacity: .85; }
+.loader-ring i:nth-child(3) { transform: translate(26px, 0); opacity: .7; }
+.loader-ring i:nth-child(4) { transform: translate(18px, 18px); opacity: .55; }
+.loader-ring i:nth-child(5) { transform: translate(0, 26px); opacity: .4; }
+.loader-ring i:nth-child(6) { transform: translate(-18px, 18px); opacity: .3; }
+.loader-ring i:nth-child(7) { transform: translate(-26px, 0); opacity: .2; }
+.loader-ring i:nth-child(8) { transform: translate(-18px, -18px); opacity: .12; }
+@keyframes ringStep { to { transform: rotate(360deg); } }
+.loader-bar { width: min(320px, 70vw); height: 18px; margin: 24px auto 0;
+  border: 3px solid var(--border); background: #0a0a20; padding: 2px; }
+.loader-fill { height: 100%; width: 0%; background:
+  repeating-linear-gradient(90deg, var(--gold) 0 10px, #e8a800 10px 14px); }
+.loader-pct { color: var(--dim); font-size: 9px; margin-top: 10px; }
+.loader-tip { color: var(--pink); font-size: 9px; margin-top: 16px; min-height: 14px; }
+
+/* ---------- content entrance ---------- */
+#screen-country.entering .country-content { opacity: 0; }
+#screen-country.revealed [data-rv] {
+  animation: rvIn .55s cubic-bezier(.18, .9, .28, 1.04) both;
+  animation-delay: var(--rv, 0s);
+}
+@keyframes rvIn {
+  from { opacity: 0; transform: translateY(30px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .sc-far, .sc-mid, .sc-near, .fx-cloud, .fx-flake, .fx-grain, .fx-petal,
+  .fx-fly, .fx-butterfly, .fx-bird, .fx-mist, .fx-spark, .fx-aurora,
+  .mill, .flourish, .loader-flag { animation: none !important; }
+  .sc-zoom { transform: none; filter: none; }
+  #screen-country.revealed [data-rv] { animation-duration: .01s; }
 }
