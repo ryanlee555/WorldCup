@@ -17,8 +17,27 @@ const SFX = (() => {
     o.connect(g).connect(ctx.destination);
     o.start(ctx.currentTime + when); o.stop(ctx.currentTime + when + dur + 0.02);
   }
+  function whoosh() {
+    if (muted) return;
+    const ctx = ensure();
+    const len = Math.floor(ctx.sampleRate * 0.7);
+    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+    const src = ctx.createBufferSource(); src.buffer = buf;
+    const f = ctx.createBiquadFilter(); f.type = "bandpass"; f.Q.value = 0.8;
+    f.frequency.setValueAtTime(300, ctx.currentTime);
+    f.frequency.exponentialRampToValueAtTime(2400, ctx.currentTime + 0.5);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.14, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.7);
+    src.connect(f).connect(g).connect(ctx.destination); src.start();
+  }
   return {
     blip:  () => tone(660, 0.06),
+    tick:  () => tone(980, 0.03, "square", 0.03),
+    chirp: () => { tone(1560, 0.07, "square", 0.045); tone(1180, 0.09, "square", 0.04, 0.09); },
+    whoosh,
     move:  () => tone(440, 0.05, "square", 0.04),
     kick:  () => { tone(220, 0.08, "square", 0.08, 0, -160); tone(880, 0.05, "square", 0.04, 0.02); },
     start: () => { [523, 659, 784, 1047].forEach((f, i) => tone(f, 0.12, "square", 0.07, i * 0.09)); },
@@ -71,7 +90,13 @@ function show(name) {
   document.getElementById("navbar").classList.toggle("hidden", name === "intro");
   document.querySelectorAll(".nav-btn[data-nav]").forEach(b =>
     b.classList.toggle("current", b.dataset.nav === name));
-  if (name !== "country" && currentPlayer) { currentPlayer.stop(); currentPlayer = null; }
+  if (name !== "country") {
+    countrySeq++; // cancel any in-flight country entry sequence
+    document.getElementById("country-loader").classList.add("hidden");
+    document.querySelectorAll(".flourish").forEach(el => el.remove());
+    document.getElementById("country-bg").innerHTML = "";
+    if (currentPlayer) { currentPlayer.stop(); currentPlayer = null; }
+  }
   window.scrollTo(0, 0);
 }
 
@@ -144,23 +169,81 @@ function buildRoster() {
     b.addEventListener("click", () => { SFX.blip(); openCountry(b.dataset.team); }));
 }
 
-/* ---------------- country screen ---------------- */
+/* ---------------- country screen ----------------
+   Sequence: retro loading screen → iris-out "dive" into the
+   country's living backdrop → bird flourish → panels cascade in. */
+let countrySeq = 0;
+const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const LOADER_TIPS = [
+  "PAINTING SKY…", "SPAWNING CLOUDS…", "PLANTING SCENERY…",
+  "WAKING THE WILDLIFE…", "TUNING CHANTS…", "WARMING FLOODLIGHTS…"
+];
+
 function openCountry(id) {
   const t = TEAMS[id];
+  const seq = ++countrySeq;
+  const screen = document.getElementById("screen-country");
+  const loader = document.getElementById("country-loader");
+  const fill = document.getElementById("loader-fill");
+  const pct = document.getElementById("loader-pct");
+  const tip = document.getElementById("loader-tip");
+
+  fillCountry(id, t);
   show("country");
 
-  // themed background
-  const bg = document.getElementById("country-bg");
-  bg.style.background = `linear-gradient(180deg, ${t.bg.g1} 0%, ${t.bg.g2} 100%)`;
-  let motifs = "";
-  for (let i = 0; i < 14; i++) {
-    const m = t.bg.motifs[i % t.bg.motifs.length];
-    const x = (i * 37 + 11) % 100, y = (i * 53 + 7) % 100;
-    const s = 24 + ((i * 29) % 40);
-    motifs += `<span class="motif" style="left:${x}%;top:${y}%;font-size:${s}px;animation-delay:${(i % 7) * 0.9}s">${m}</span>`;
-  }
-  bg.innerHTML = motifs;
+  // build the scenic backdrop while the loader plays
+  const scene = CountryScenes.build(id, document.getElementById("country-bg"));
+  screen.classList.add("entering");
+  screen.classList.remove("settled", "revealed");
+  document.querySelectorAll(".flourish").forEach(el => el.remove());
 
+  // loading screen
+  document.getElementById("loader-flag").textContent = t.flag;
+  document.getElementById("loader-dest").textContent = t.name;
+  loader.classList.remove("hidden", "iris");
+  fill.style.width = "0%"; pct.textContent = "0%";
+  tip.textContent = LOADER_TIPS[Math.floor(Math.random() * LOADER_TIPS.length)];
+
+  const LOAD_MS = REDUCED_MOTION ? 200 : 1250;
+  let prog = 0;
+  const bump = () => {
+    if (seq !== countrySeq) return;
+    prog = Math.min(100, prog + 6 + Math.random() * 15);
+    fill.style.width = prog + "%";
+    pct.textContent = Math.floor(prog) + "%";
+    SFX.tick();
+    if (prog >= 55 && prog < 75) tip.textContent = LOADER_TIPS[Math.floor(Math.random() * LOADER_TIPS.length)];
+    if (prog < 100) setTimeout(bump, LOAD_MS / 11);
+  };
+  if (!REDUCED_MOTION) setTimeout(bump, 60); else { fill.style.width = "100%"; pct.textContent = "100%"; }
+
+  // dive into the world
+  setTimeout(() => {
+    if (seq !== countrySeq) return;
+    loader.classList.add("iris");
+    screen.classList.add("settled");
+    SFX.whoosh();
+    setTimeout(() => { if (seq === countrySeq) loader.classList.add("hidden"); }, 800);
+
+    // flourish + content cascade once the backdrop settles
+    setTimeout(() => {
+      if (seq !== countrySeq) return;
+      if (!REDUCED_MOTION) {
+        CountryScenes.flourish(document.body, scene.flourish);
+        SFX.chirp();
+      }
+      const els = screen.querySelectorAll(".back-btn, .country-header, .panel");
+      els.forEach((el, i) => {
+        el.setAttribute("data-rv", "");
+        el.style.setProperty("--rv", (i * 0.08) + "s");
+      });
+      screen.classList.remove("entering");
+      screen.classList.add("revealed");
+    }, REDUCED_MOTION ? 0 : 550);
+  }, LOAD_MS + 150);
+}
+
+function fillCountry(id, t) {
   document.getElementById("country-flag").textContent = t.flag;
   document.getElementById("country-name").textContent = t.name;
   document.getElementById("country-tagline").textContent = t.tagline;
