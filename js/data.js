@@ -149,7 +149,7 @@ const TEAMS = {
     legends: ["Achraf Hakimi", "Yassine Bounou", "Brahim Díaz", "Mustapha Hadji"],
     wc: "7th appearance. First African semifinalist ever (2022) — and 2030 co-hosts.",
     fact: "Morocco's 2022 run beat Belgium, Spain AND Portugal without conceding to an opponent.",
-    status: "🟦 RUNNER-UP GROUP C (7 PTS) → BEAT NETHERLANDS ON PENALTIES → CRUSHED CANADA 3-0 → QUARTERFINAL VS FRANCE, JUL 9."
+    status: "🟥 RUNNER-UP GROUP C (7 PTS) → BEAT NETHERLANDS ON PENS → CRUSHED CANADA 3-0 → FELL 2-0 TO FRANCE IN THE QUARTERFINAL. A PROUD RUN ENDS IN THE LAST 8."
   },
   hai: {
     name: "HAITI", flag: "🇭🇹", group: "C", lat: 19.0, lon: -72.3,
@@ -483,7 +483,7 @@ const TEAMS = {
     legends: ["Zinedine Zidane", "Kylian Mbappé", "Michel Platini", "Thierry Henry", "Antoine Griezmann"],
     wc: "17th appearance. Champions 1998 & 2018, runners-up 2022 — in a third straight final hunt.",
     fact: "Mbappé scored a hat-trick in the 2022 final and still lost. He remembers.",
-    status: "🟦 WON GROUP I → CRUSHED SWEDEN 3-0 → EDGED PARAGUAY 1-0 → QUARTERFINAL VS MOROCCO IN BOSTON, JUL 9. FAVORITES AT +170."
+    status: "🟦 WON GROUP I → SWEDEN 3-0 → PARAGUAY 1-0 → MBAPPÉ & DEMBÉLÉ BEAT MOROCCO 2-0 → SEMIFINAL, JUL 14. STILL NO GOALS CONCEDED IN THE KNOCKOUTS; MBAPPÉ TOPS THE GOLDEN BOOT ON 8."
   },
   sen: {
     name: "SENEGAL", flag: "🇸🇳", group: "I", lat: 14.5, lon: -14.5,

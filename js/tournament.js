@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 8, 2026 — Round of 16 complete; quarterfinals set.
+   DATA PATCH: July 10, 2026 — quarterfinals underway (France in the semis).
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -122,8 +122,9 @@ const MATCHES = [
         sum:"A goalless, cagey 120 minutes in Vancouver went to a shootout, where Ruben Vargas slotted the decisive spot-kick to send Switzerland into their first World Cup quarterfinal since 1954 — and a date with Messi's Argentina." } },
 
   /* Quarterfinals — Jul 9–12 */
-  { id:"qf-1", round:"QF", date:"JUL 9 · 4PM ET", a:"fra", b:"mar", sa:null, sb:null, status:"upcoming", venue:"BOSTON STADIUM",
-    d:{ preview:"Tournament favourites France (who haven't conceded in the knockouts) against the fearless Atlas Lions, 2022's semifinalists. A blockbuster in Boston." } },
+  { id:"qf-1", round:"QF", date:"JUL 9", a:"fra", b:"mar", sa:2, sb:0, status:"played", note:"MBAPPÉ & DEMBÉLÉ SEND FRANCE THROUGH", venue:"BOSTON STADIUM", espnId:760510,
+    d:{ goals:[{t:"fra",p:"Mbappé",m:60},{t:"fra",p:"Dembélé",m:66}], motm:{t:"fra",p:"Kylian Mbappé"},
+        sum:"Mbappé shrugged off a saved first-half penalty to curl in the opener from Doué's pass on 60', then teed up Dembélé six minutes later. France (1.87 xG) reached the semifinals still without conceding a single goal in the knockout stage — and Mbappé moved top of the Golden Boot race on 8, edging Messi on the tiebreaker." } },
   { id:"qf-2", round:"QF", date:"JUL 10 · 12PM ET", a:"esp", b:"bel", sa:null, sb:null, status:"upcoming", venue:"LOS ANGELES STADIUM",
     d:{ preview:"Spain, who edged Portugal, against a Belgium side fresh off dismantling the USA 4-1. De Bruyne, Tielemans and De Ketelaere against the Euro champions in Los Angeles for a semifinal place." } },
   { id:"qf-3", round:"QF", date:"JUL 11 · 5PM ET", a:"nor", b:"eng", sa:null, sb:null, status:"upcoming", venue:"MIAMI STADIUM",
@@ -132,8 +133,8 @@ const MATCHES = [
     d:{ preview:"Messi's Argentina, fresh off their comeback over Egypt, against a Switzerland side that has ground out results and won a shootout to get here. Kansas City, Jul 12, for a semifinal place." } },
 
   /* Semifinals & Final */
-  { id:"sf-1", round:"SF", date:"JUL 14", a:null, b:null, ph:"QF1 WINNER vs QF2 WINNER", sa:null, sb:null, status:"tbd", venue:"DALLAS STADIUM",
-    d:{ preview:"First semifinal — the QF1 (France/Morocco) winner meets the QF2 winner. Dallas, Jul 14." } },
+  { id:"sf-1", round:"SF", date:"JUL 14", a:"fra", b:null, ph:"FRANCE vs QF2 WINNER", sa:null, sb:null, status:"tbd", venue:"DALLAS STADIUM",
+    d:{ preview:"First semifinal — France, into the last four without conceding all knockout stage, await the Spain–Belgium winner. Dallas, Jul 14." } },
   { id:"sf-2", round:"SF", date:"JUL 15", a:null, b:null, ph:"QF3 WINNER vs QF4 WINNER", sa:null, sb:null, status:"tbd", venue:"ATLANTA STADIUM",
     d:{ preview:"Second semifinal — the QF3 (Norway/England) winner meets the QF4 winner. Atlanta, Jul 15." } },
   { id:"f-3rd", round:"3RD", date:"JUL 18", a:null, b:null, ph:"THIRD PLACE PLAYOFF", sa:null, sb:null, status:"tbd", venue:"MIAMI STADIUM",
@@ -158,7 +159,6 @@ const ODDS = [
   { t:"eng", line:"+500",  tier:"CONTENDER",  note:"Bellingham & Kane firing" },
   { t:"esp", line:"+600",  tier:"CONTENDER",  note:"Euro champs · edged Portugal into the QFs" },
   { t:"nor", line:"n/a",   tier:"DARK HORSE", note:"Haaland: 7 goals & surging" },
-  { t:"mar", line:"n/a",   tier:"DARK HORSE", note:"2022 semifinalists, fearless" },
   { t:"bel", line:"n/a",   tier:"DARK HORSE", note:"Routed the USA 4-1; face Spain next" },
   { t:"sui", line:"n/a",   tier:"LONGSHOT",   note:"Shootout win over Colombia; face Argentina" }
 ];
@@ -167,9 +167,9 @@ const ODDS = [
 const LIVE_TODAY = {
   label: "⚡ QUARTERFINALS — LAST 8",
   items: [
-    "JUL 9 · FRANCE vs MOROCCO — a 2022 semifinal rematch in Boston",
-    "JUL 10 · SPAIN vs BELGIUM · LA  ·  JUL 11 · NORWAY vs ENGLAND · MIAMI",
-    "JUL 12 · ARGENTINA vs SWITZERLAND · KANSAS CITY — Switzerland won a shootout to get here"
+    "FT: FRANCE 2-0 MOROCCO — Mbappé & Dembélé send Les Bleus to the semis (still no goals conceded in the KOs)",
+    "TODAY JUL 10 · SPAIN vs BELGIUM · LA — winner meets France",
+    "NEXT: NORWAY vs ENGLAND (Jul 11) · ARGENTINA vs SWITZERLAND (Jul 12)"
   ]
 };
 
@@ -224,5 +224,5 @@ const FACTS_2026 = [
   "A new round: the Round of 32 — group winners, runners-up and 8 best third-placed teams advance.",
   "Messi (39) and Ronaldo (41) both playing — their SIXTH World Cups, 20 years after their first.",
   "Paraguay's win over Germany earned a national holiday back home.",
-  "Lionel Messi leads the Golden Boot race with 8 goals, ahead of Haaland and Mbappé on 7."
+  "Kylian Mbappé leads the Golden Boot race on 8 goals, edging Messi (8) on the tiebreaker, with Haaland on 7."
 ];
