@@ -367,7 +367,7 @@ const TEAMS = {
     legends: ["Kevin De Bruyne", "Eden Hazard", "Thibaut Courtois", "Jérémy Doku"],
     wc: "15th appearance. Third place in 2018; No. 1 in the world for years without a trophy — yet.",
     fact: "Fries were (Belgians insist) invented in Belgium, not France. Fighting words.",
-    status: "🟦 ADVANCED FROM GROUP G → OUTLASTED SENEGAL 3-2 AET → ROUTED THE USA 4-1 (DE KETELAERE ×2) → QUARTERFINAL VS SPAIN, JUL 10 IN LA."
+    status: "🟥 ADVANCED FROM GROUP G → OUTLASTED SENEGAL 3-2 AET → ROUTED THE USA 4-1 → FELL 2-1 TO SPAIN IN THE QUARTERFINAL (MERINO'S LATE WINNER). OUT IN THE LAST 8."
   },
   egy: {
     name: "EGYPT", flag: "🇪🇬", group: "G", lat: 26.8, lon: 30.0,
@@ -425,7 +425,7 @@ const TEAMS = {
     legends: ["Andrés Iniesta", "Xavi", "Iker Casillas", "Lamine Yamal", "Pedri"],
     wc: "17th appearance. Champions 2010; European champions 2024 playing the tournament's prettiest football.",
     fact: "Lamine Yamal became Spain's youngest ever World Cup scorer this summer — still a teenager.",
-    status: "🟦 WON GROUP H → CRUISED PAST AUSTRIA (OYARZABAL ×2) → MERINO'S 90+1' WINNER BEAT PORTUGAL 1-0 → QUARTERFINAL VS USA/BELGIUM, JUL 10 IN LA."
+    status: "🟦 WON GROUP H → AUSTRIA 3-0 → MERINO SANK PORTUGAL 1-0 → MERINO AGAIN TO BEAT BELGIUM 2-1 → SEMIFINAL VS FRANCE, JUL 14. MBAPPÉ vs YAMAL!"
   },
   cpv: {
     name: "CAPE VERDE", flag: "🇨🇻", group: "H", lat: 15.1, lon: -23.6,

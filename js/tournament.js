@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 10, 2026 — quarterfinals underway (France in the semis).
+   DATA PATCH: July 11, 2026 — quarterfinals underway (France & Spain in the semis).
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -125,16 +125,17 @@ const MATCHES = [
   { id:"qf-1", round:"QF", date:"JUL 9", a:"fra", b:"mar", sa:2, sb:0, status:"played", note:"MBAPPÉ & DEMBÉLÉ SEND FRANCE THROUGH", venue:"BOSTON STADIUM", espnId:760510,
     d:{ goals:[{t:"fra",p:"Mbappé",m:60},{t:"fra",p:"Dembélé",m:66}], motm:{t:"fra",p:"Kylian Mbappé"},
         sum:"Mbappé shrugged off a saved first-half penalty to curl in the opener from Doué's pass on 60', then teed up Dembélé six minutes later. France (1.87 xG) reached the semifinals still without conceding a single goal in the knockout stage — and Mbappé moved top of the Golden Boot race on 8, edging Messi on the tiebreaker." } },
-  { id:"qf-2", round:"QF", date:"JUL 10 · 12PM ET", a:"esp", b:"bel", sa:null, sb:null, status:"upcoming", venue:"LOS ANGELES STADIUM",
-    d:{ preview:"Spain, who edged Portugal, against a Belgium side fresh off dismantling the USA 4-1. De Bruyne, Tielemans and De Ketelaere against the Euro champions in Los Angeles for a semifinal place." } },
+  { id:"qf-2", round:"QF", date:"JUL 10", a:"esp", b:"bel", sa:2, sb:1, status:"played", note:"SUPER-SUB MERINO'S LATE WINNER — AGAIN", venue:"LOS ANGELES STADIUM", espnId:760511,
+    d:{ goals:[{t:"esp",p:"Fabián Ruiz"},{t:"bel",p:"De Ketelaere"},{t:"esp",p:"Mikel Merino",m:88}], motm:{t:"esp",p:"Mikel Merino"},
+        sum:"Fabián Ruiz's opener was cancelled out by De Ketelaere, but Mikel Merino struck again — the substitute netting a late winner within minutes of coming on, just as he did against Portugal in the last 16. The Euro champions march into a semifinal against France." } },
   { id:"qf-3", round:"QF", date:"JUL 11 · 5PM ET", a:"nor", b:"eng", sa:null, sb:null, status:"upcoming", venue:"MIAMI STADIUM",
     d:{ preview:"Haaland vs the Three Lions. Norway's conquerors of Brazil against Bellingham & Kane's England. Golden Boot fireworks expected in Miami." } },
   { id:"qf-4", round:"QF", date:"JUL 12 · 8PM ET", a:"arg", b:"sui", sa:null, sb:null, status:"upcoming", venue:"KANSAS CITY STADIUM",
     d:{ preview:"Messi's Argentina, fresh off their comeback over Egypt, against a Switzerland side that has ground out results and won a shootout to get here. Kansas City, Jul 12, for a semifinal place." } },
 
   /* Semifinals & Final */
-  { id:"sf-1", round:"SF", date:"JUL 14", a:"fra", b:null, ph:"FRANCE vs QF2 WINNER", sa:null, sb:null, status:"tbd", venue:"DALLAS STADIUM",
-    d:{ preview:"First semifinal — France, into the last four without conceding all knockout stage, await the Spain–Belgium winner. Dallas, Jul 14." } },
+  { id:"sf-1", round:"SF", date:"JUL 14", a:"fra", b:"esp", sa:null, sb:null, status:"upcoming", venue:"DALLAS STADIUM",
+    d:{ preview:"A heavyweight semifinal: France — unbeaten and yet to concede in the knockouts — against the Euro champions Spain. Mbappé vs Lamine Yamal in Dallas, Jul 14, for a place in the final." } },
   { id:"sf-2", round:"SF", date:"JUL 15", a:null, b:null, ph:"QF3 WINNER vs QF4 WINNER", sa:null, sb:null, status:"tbd", venue:"ATLANTA STADIUM",
     d:{ preview:"Second semifinal — the QF3 (Norway/England) winner meets the QF4 winner. Atlanta, Jul 15." } },
   { id:"f-3rd", round:"3RD", date:"JUL 18", a:null, b:null, ph:"THIRD PLACE PLAYOFF", sa:null, sb:null, status:"tbd", venue:"MIAMI STADIUM",
@@ -157,9 +158,8 @@ const ODDS = [
   { t:"fra", line:"+170",  tier:"FAVORITE",   note:"No knockout goals conceded" },
   { t:"arg", line:"+470",  tier:"CONTENDER",  note:"Messi's title defense" },
   { t:"eng", line:"+500",  tier:"CONTENDER",  note:"Bellingham & Kane firing" },
-  { t:"esp", line:"+600",  tier:"CONTENDER",  note:"Euro champs · edged Portugal into the QFs" },
+  { t:"esp", line:"+600",  tier:"CONTENDER",  note:"Euro champs · into the semis vs France" },
   { t:"nor", line:"n/a",   tier:"DARK HORSE", note:"Haaland: 7 goals & surging" },
-  { t:"bel", line:"n/a",   tier:"DARK HORSE", note:"Routed the USA 4-1; face Spain next" },
   { t:"sui", line:"n/a",   tier:"LONGSHOT",   note:"Shootout win over Colombia; face Argentina" }
 ];
 
@@ -167,9 +167,9 @@ const ODDS = [
 const LIVE_TODAY = {
   label: "⚡ QUARTERFINALS — LAST 8",
   items: [
-    "FT: FRANCE 2-0 MOROCCO — Mbappé & Dembélé send Les Bleus to the semis (still no goals conceded in the KOs)",
-    "TODAY JUL 10 · SPAIN vs BELGIUM · LA — winner meets France",
-    "NEXT: NORWAY vs ENGLAND (Jul 11) · ARGENTINA vs SWITZERLAND (Jul 12)"
+    "SEMIFINAL SET: FRANCE vs SPAIN (Jul 14) — Mbappé vs Yamal for a place in the final",
+    "FT: Spain 2-1 Belgium (Merino's late winner again) · France 2-0 Morocco",
+    "TODAY JUL 11 · NORWAY vs ENGLAND · MIAMI  ·  JUL 12 · ARGENTINA vs SWITZERLAND"
   ]
 };
 
