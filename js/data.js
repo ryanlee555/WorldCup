@@ -119,7 +119,7 @@ const TEAMS = {
     legends: ["Granit Xhaka", "Xherdan Shaqiri", "Yann Sommer", "Breel Embolo"],
     wc: "13th appearance. Quarterfinalists in 1934, 1938 and 1954 (as hosts) — chasing that mark again.",
     fact: "Switzerland has been officially neutral since 1815 — except on matchday.",
-    status: "🟦 WON GROUP B (7 PTS) → BEAT ALGERIA 2-0 → 0-0 VS COLOMBIA, WON 4-3 ON PENS → QUARTERFINAL VS ARGENTINA, JUL 12. FIRST QF SINCE 1954!"
+    status: "🟥 WON GROUP B (7 PTS) → ALGERIA 2-0 → BEAT COLOMBIA ON PENS → LED ARGENTINA BUT FELL 3-1 IN EXTRA TIME (DOWN TO 10 MEN). A BRILLIANT RUN ENDS IN THE QUARTERFINALS."
   },
 
   /* ---------------- GROUP C ---------------- */
@@ -525,7 +525,7 @@ const TEAMS = {
     legends: ["Erling Haaland", "Martin Ødegaard", "Ole Gunnar Solskjær"],
     wc: "4th appearance — first since 1998, and already their best ever after KO'ing Brazil.",
     fact: "Haaland has 7 goals in just 6 matches — one behind Messi's tournament-leading 8.",
-    status: "🟨 ADVANCED FROM GROUP I → SANK IVORY COAST → TOPPLED BRAZIL WITH A HAALAND BRACE → QUARTERFINAL VS ENGLAND IN MIAMI, JUL 11."
+    status: "🟥 ADVANCED FROM GROUP I → SANK IVORY COAST → TOPPLED BRAZIL → LED ENGLAND BUT FELL 2-1 IN EXTRA TIME (BELLINGHAM ×2). A HISTORIC RUN ENDS IN THE LAST 8; HAALAND FINISHES ON 7 GOALS."
   },
 
   /* ---------------- GROUP J ---------------- */
@@ -541,7 +541,7 @@ const TEAMS = {
     legends: ["Lionel Messi", "Diego Maradona", "Mario Kempes", "Gabriel Batistuta", "Julián Álvarez"],
     wc: "19th appearance. Champions 1978, 1986, 2022 — chasing back-to-back titles, last done by Brazil in 1962.",
     fact: "Messi, 39, is playing his SIXTH World Cup — a men's record.",
-    status: "🟦 WON GROUP J → SURVIVED CAPE VERDE 3-2 AET → ROARED BACK FROM 2-0 DOWN TO BEAT EGYPT 3-2 (ENZO 90+2') → QUARTERFINAL VS SUI/COL, JUL 12. MESSI LEADS THE GOLDEN BOOT ON 8."
+    status: "🟦 WON GROUP J → CAPE VERDE 3-2 AET → BEAT EGYPT 3-2 (ENZO 90+2') → ÁLVAREZ'S ET GOLAZO SANK SWITZERLAND 3-1 → SEMIFINAL VS ENGLAND, JUL 15. MESSI vs BELLINGHAM."
   },
   alg: {
     name: "ALGERIA", flag: "🇩🇿", group: "J", lat: 28.0, lon: 2.6,
@@ -657,7 +657,7 @@ const TEAMS = {
     legends: ["Harry Kane", "Jude Bellingham", "Bobby Moore", "Gary Lineker", "Bukayo Saka"],
     wc: "17th appearance. Champions 1966 at Wembley — the 60-year wait is the national obsession.",
     fact: "England invented the rules of football in a London pub in 1863 (The Freemasons' Tavern).",
-    status: "🟦 WON GROUP L → KANE DOUBLE SANK DR CONGO → HELD OFF MEXICO 3-2 → QUARTERFINAL VS NORWAY IN MIAMI, JUL 11."
+    status: "🟦 WON GROUP L → KANE SANK DR CONGO → HELD OFF MEXICO 3-2 → BELLINGHAM'S EXTRA-TIME DOUBLE BEAT NORWAY 2-1 → SEMIFINAL VS ARGENTINA, JUL 15. FIRST SEMI SINCE 2018!"
   },
   cro: {
     name: "CROATIA", flag: "🇭🇷", group: "L", lat: 45.2, lon: 15.5,

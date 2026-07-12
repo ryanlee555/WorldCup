@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 11, 2026 — quarterfinals underway (France & Spain in the semis).
+   DATA PATCH: July 12, 2026 — quarterfinals complete; final four set.
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -128,16 +128,19 @@ const MATCHES = [
   { id:"qf-2", round:"QF", date:"JUL 10", a:"esp", b:"bel", sa:2, sb:1, status:"played", note:"SUPER-SUB MERINO'S LATE WINNER — AGAIN", venue:"LOS ANGELES STADIUM", espnId:760511,
     d:{ goals:[{t:"esp",p:"Fabián Ruiz"},{t:"bel",p:"De Ketelaere"},{t:"esp",p:"Mikel Merino",m:88}], motm:{t:"esp",p:"Mikel Merino"},
         sum:"Fabián Ruiz's opener was cancelled out by De Ketelaere, but Mikel Merino struck again — the substitute netting a late winner within minutes of coming on, just as he did against Portugal in the last 16. The Euro champions march into a semifinal against France." } },
-  { id:"qf-3", round:"QF", date:"JUL 11 · 5PM ET", a:"nor", b:"eng", sa:null, sb:null, status:"upcoming", venue:"MIAMI STADIUM",
-    d:{ preview:"Haaland vs the Three Lions. Norway's conquerors of Brazil against Bellingham & Kane's England. Golden Boot fireworks expected in Miami." } },
-  { id:"qf-4", round:"QF", date:"JUL 12 · 8PM ET", a:"arg", b:"sui", sa:null, sb:null, status:"upcoming", venue:"KANSAS CITY STADIUM",
-    d:{ preview:"Messi's Argentina, fresh off their comeback over Egypt, against a Switzerland side that has ground out results and won a shootout to get here. Kansas City, Jul 12, for a semifinal place." } },
+  { id:"qf-3", round:"QF", date:"JUL 11", a:"nor", b:"eng", sa:1, sb:2, status:"played", note:"AET — BELLINGHAM RESCUES ENGLAND AGAIN", venue:"MIAMI STADIUM", espnId:760512,
+    d:{ goals:[{t:"nor",p:"Schjelderup",m:36},{t:"eng",p:"Bellingham",m:45},{t:"eng",p:"Bellingham",m:93}], motm:{t:"eng",p:"Jude Bellingham"},
+        sum:"Schjelderup's cross-shot put Norway ahead, but Bellingham struck in first-half stoppage time and again three minutes into extra time — pouncing on a spilled Rogers shot — to send England to their first semifinal since 2018. Haaland was kept quiet; his tournament ends on 7 goals." } },
+  { id:"qf-4", round:"QF", date:"JUL 11", a:"arg", b:"sui", sa:3, sb:1, status:"played", note:"AET — ÁLVAREZ GOLAZO · EMBOLO RED", venue:"KANSAS CITY STADIUM", espnId:760513,
+    d:{ goals:[{t:"arg",p:"Mac Allister",m:10},{t:"sui",p:"Ndoye",m:67},{t:"arg",p:"Julián Álvarez",m:112},{t:"arg",p:"Lautaro Martínez"}],
+        cards:[{t:"sui",p:"Embolo",m:72,c:"R"}], motm:{t:"arg",p:"Julián Álvarez"},
+        sum:"Mac Allister's early goal was cancelled out by Ndoye, but 10-man Switzerland — Embolo sent off on a second yellow for simulation — couldn't hold on. Álvarez settled it with a 112th-minute stunner and Lautaro Martínez added a third, booking a blockbuster semifinal against England." } },
 
   /* Semifinals & Final */
   { id:"sf-1", round:"SF", date:"JUL 14", a:"fra", b:"esp", sa:null, sb:null, status:"upcoming", venue:"DALLAS STADIUM",
     d:{ preview:"A heavyweight semifinal: France — unbeaten and yet to concede in the knockouts — against the Euro champions Spain. Mbappé vs Lamine Yamal in Dallas, Jul 14, for a place in the final." } },
-  { id:"sf-2", round:"SF", date:"JUL 15", a:null, b:null, ph:"QF3 WINNER vs QF4 WINNER", sa:null, sb:null, status:"tbd", venue:"ATLANTA STADIUM",
-    d:{ preview:"Second semifinal — the QF3 (Norway/England) winner meets the QF4 winner. Atlanta, Jul 15." } },
+  { id:"sf-2", round:"SF", date:"JUL 15", a:"arg", b:"eng", sa:null, sb:null, status:"upcoming", venue:"ATLANTA STADIUM",
+    d:{ preview:"A heavyweight second semifinal: Messi's Argentina, the defending champions, against Bellingham & Kane's England, into the last four for the first time since 2018. Atlanta, Jul 15, for a place in the final." } },
   { id:"f-3rd", round:"3RD", date:"JUL 18", a:null, b:null, ph:"THIRD PLACE PLAYOFF", sa:null, sb:null, status:"tbd", venue:"MIAMI STADIUM",
     d:{ preview:"The two beaten semifinalists play off for third place in Miami, Jul 18." } },
   { id:"f-1", round:"FINAL", date:"JUL 19", a:null, b:null, ph:"THE FINAL", sa:null, sb:null, status:"tbd", venue:"NEW YORK NEW JERSEY STADIUM",
@@ -155,21 +158,19 @@ const BRACKET = [
 /* ---- Title odds (consensus sportsbook lines, Jul 5 2026) ----
    Odds shift fast — n/a means still alive but line not confirmed at patch time. */
 const ODDS = [
-  { t:"fra", line:"+170",  tier:"FAVORITE",   note:"No knockout goals conceded" },
-  { t:"arg", line:"+470",  tier:"CONTENDER",  note:"Messi's title defense" },
-  { t:"eng", line:"+500",  tier:"CONTENDER",  note:"Bellingham & Kane firing" },
-  { t:"esp", line:"+600",  tier:"CONTENDER",  note:"Euro champs · into the semis vs France" },
-  { t:"nor", line:"n/a",   tier:"DARK HORSE", note:"Haaland: 7 goals & surging" },
-  { t:"sui", line:"n/a",   tier:"LONGSHOT",   note:"Shootout win over Colombia; face Argentina" }
+  { t:"fra", line:"+170",  tier:"FAVORITE",   note:"Still no knockout goals conceded" },
+  { t:"arg", line:"+470",  tier:"CONTENDER",  note:"Messi's title defense rolls on" },
+  { t:"eng", line:"+500",  tier:"CONTENDER",  note:"Bellingham dragging them there" },
+  { t:"esp", line:"+600",  tier:"CONTENDER",  note:"Euro champs · face France in the semis" }
 ];
 
 /* ---- Live banner ---- */
 const LIVE_TODAY = {
-  label: "⚡ QUARTERFINALS — LAST 8",
+  label: "⚡ SEMIFINALS — FINAL FOUR",
   items: [
-    "SEMIFINAL SET: FRANCE vs SPAIN (Jul 14) — Mbappé vs Yamal for a place in the final",
-    "FT: Spain 2-1 Belgium (Merino's late winner again) · France 2-0 Morocco",
-    "TODAY JUL 11 · NORWAY vs ENGLAND · MIAMI  ·  JUL 12 · ARGENTINA vs SWITZERLAND"
+    "JUL 14 · FRANCE vs SPAIN · DALLAS — Mbappé vs Yamal",
+    "JUL 15 · ARGENTINA vs ENGLAND · ATLANTA — Messi vs Bellingham",
+    "FT: England 2-1 Norway (AET, Bellingham x2) · Argentina 3-1 Switzerland (AET)"
   ]
 };
 
