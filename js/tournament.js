@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 12, 2026 — quarterfinals complete; final four set.
+   DATA PATCH: July 15, 2026 — Spain into the final; SF2 (Argentina-England) next.
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -137,14 +137,15 @@ const MATCHES = [
         sum:"Mac Allister's early goal was cancelled out by Ndoye, but 10-man Switzerland — Embolo sent off on a second yellow for simulation — couldn't hold on. Álvarez settled it with a 112th-minute stunner and Lautaro Martínez added a third, booking a blockbuster semifinal against England." } },
 
   /* Semifinals & Final */
-  { id:"sf-1", round:"SF", date:"JUL 14", a:"fra", b:"esp", sa:null, sb:null, status:"upcoming", venue:"DALLAS STADIUM",
-    d:{ preview:"A heavyweight semifinal: France — unbeaten and yet to concede in the knockouts — against the Euro champions Spain. Mbappé vs Lamine Yamal in Dallas, Jul 14, for a place in the final." } },
+  { id:"sf-1", round:"SF", date:"JUL 14", a:"fra", b:"esp", sa:0, sb:2, status:"played", note:"SPAIN END FRANCE'S UNBEATEN RUN — INTO THE FINAL", venue:"DALLAS STADIUM", espnId:760514,
+    d:{ goals:[{t:"esp",p:"Oyarzabal",m:22,pen:true},{t:"esp",p:"Pedro Porro",m:58}], motm:{t:"esp",p:"Lamine Yamal"},
+        sum:"The Euro champions dethroned the tournament favourites. Oyarzabal converted a penalty won by the brilliant Lamine Yamal on 22', and Porro doubled it on 58' off a one-two with Dani Olmo. France — who hadn't conceded a single goal in the knockouts — were held to 0.04 xG in a chastening first half (and lost Saliba to injury), as Spain reached their first World Cup final since 2010." } },
   { id:"sf-2", round:"SF", date:"JUL 15", a:"arg", b:"eng", sa:null, sb:null, status:"upcoming", venue:"ATLANTA STADIUM",
     d:{ preview:"A heavyweight second semifinal: Messi's Argentina, the defending champions, against Bellingham & Kane's England, into the last four for the first time since 2018. Atlanta, Jul 15, for a place in the final." } },
-  { id:"f-3rd", round:"3RD", date:"JUL 18", a:null, b:null, ph:"THIRD PLACE PLAYOFF", sa:null, sb:null, status:"tbd", venue:"MIAMI STADIUM",
-    d:{ preview:"The two beaten semifinalists play off for third place in Miami, Jul 18." } },
-  { id:"f-1", round:"FINAL", date:"JUL 19", a:null, b:null, ph:"THE FINAL", sa:null, sb:null, status:"tbd", venue:"NEW YORK NEW JERSEY STADIUM",
-    d:{ preview:"🏆 THE FINAL. July 19 at New York New Jersey Stadium, 82,500 seats. One match for the whole thing." } }
+  { id:"f-3rd", round:"3RD", date:"JUL 18", a:"fra", b:null, ph:"FRANCE vs ARG/ENG LOSER", sa:null, sb:null, status:"tbd", venue:"MIAMI STADIUM",
+    d:{ preview:"France, beaten by Spain in the semis, meet the losing semifinalist from Argentina–England in the third-place playoff. Miami, Jul 18." } },
+  { id:"f-1", round:"FINAL", date:"JUL 19", a:"esp", b:null, ph:"SPAIN vs ARG/ENG", sa:null, sb:null, status:"tbd", venue:"NEW YORK NEW JERSEY STADIUM",
+    d:{ preview:"🏆 THE FINAL. Spain — into their first final since winning it all in 2010 — await the winner of Argentina vs England. July 19 at New York New Jersey Stadium, 82,500 seats. One match for the whole thing." } }
 ];
 
 /* Bracket layout: QF blocks with their feeder R16 + R32 matches */
@@ -158,19 +159,18 @@ const BRACKET = [
 /* ---- Title odds (consensus sportsbook lines, Jul 5 2026) ----
    Odds shift fast — n/a means still alive but line not confirmed at patch time. */
 const ODDS = [
-  { t:"fra", line:"+170",  tier:"FAVORITE",   note:"Still no knockout goals conceded" },
-  { t:"arg", line:"+470",  tier:"CONTENDER",  note:"Messi's title defense rolls on" },
-  { t:"eng", line:"+500",  tier:"CONTENDER",  note:"Bellingham dragging them there" },
-  { t:"esp", line:"+600",  tier:"CONTENDER",  note:"Euro champs · face France in the semis" }
+  { t:"esp", line:"n/a",   tier:"FAVORITE",   note:"IN THE FINAL — beat France 2-0" },
+  { t:"arg", line:"n/a",   tier:"CONTENDER",  note:"Messi's title defense · SF vs England" },
+  { t:"eng", line:"n/a",   tier:"CONTENDER",  note:"Bellingham dragging them there · SF vs Argentina" }
 ];
 
 /* ---- Live banner ---- */
 const LIVE_TODAY = {
-  label: "⚡ SEMIFINALS — FINAL FOUR",
+  label: "⚡ SEMIFINALS",
   items: [
-    "JUL 14 · FRANCE vs SPAIN · DALLAS — Mbappé vs Yamal",
-    "JUL 15 · ARGENTINA vs ENGLAND · ATLANTA — Messi vs Bellingham",
-    "FT: England 2-1 Norway (AET, Bellingham x2) · Argentina 3-1 Switzerland (AET)"
+    "FT: SPAIN 2-0 FRANCE — La Roja end the favourites' run and reach their first final since 2010",
+    "TODAY JUL 15 · ARGENTINA vs ENGLAND · ATLANTA — Messi vs Bellingham for the other final spot",
+    "FINAL: JUL 19 · SPAIN vs (ARG/ENG) · NEW YORK NEW JERSEY"
   ]
 };
 

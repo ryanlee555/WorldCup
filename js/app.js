@@ -48,7 +48,7 @@ const SFX = (() => {
 window.SFX = SFX;
 
 /* ---------------- alive flags for globe markers ---------------- */
-const ALIVE = new Set(["fra","esp","arg","eng"]);
+const ALIVE = new Set(["esp","arg","eng"]);
 for (const [id, t] of Object.entries(TEAMS)) t._alive = ALIVE.has(id);
 
 /* ---------------- navigation ---------------- */

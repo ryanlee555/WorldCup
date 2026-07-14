@@ -425,7 +425,7 @@ const TEAMS = {
     legends: ["Andrés Iniesta", "Xavi", "Iker Casillas", "Lamine Yamal", "Pedri"],
     wc: "17th appearance. Champions 2010; European champions 2024 playing the tournament's prettiest football.",
     fact: "Lamine Yamal became Spain's youngest ever World Cup scorer this summer — still a teenager.",
-    status: "🟦 WON GROUP H → AUSTRIA 3-0 → MERINO SANK PORTUGAL 1-0 → MERINO AGAIN TO BEAT BELGIUM 2-1 → SEMIFINAL VS FRANCE, JUL 14. MBAPPÉ vs YAMAL!"
+    status: "🏆 WON GROUP H → PORTUGAL 1-0 → BELGIUM 2-1 → STUNNED FAVOURITES FRANCE 2-0 (OYARZABAL, PORRO) → IN THE FINAL, JUL 19! FIRST WORLD CUP FINAL SINCE WINNING IT IN 2010."
   },
   cpv: {
     name: "CAPE VERDE", flag: "🇨🇻", group: "H", lat: 15.1, lon: -23.6,
@@ -483,7 +483,7 @@ const TEAMS = {
     legends: ["Zinedine Zidane", "Kylian Mbappé", "Michel Platini", "Thierry Henry", "Antoine Griezmann"],
     wc: "17th appearance. Champions 1998 & 2018, runners-up 2022 — in a third straight final hunt.",
     fact: "Mbappé scored a hat-trick in the 2022 final and still lost. He remembers.",
-    status: "🟦 WON GROUP I → SWEDEN 3-0 → PARAGUAY 1-0 → MBAPPÉ & DEMBÉLÉ BEAT MOROCCO 2-0 → SEMIFINAL, JUL 14. STILL NO GOALS CONCEDED IN THE KNOCKOUTS; MBAPPÉ TOPS THE GOLDEN BOOT ON 8."
+    status: "🟥 WON GROUP I → SWEDEN 3-0 → PARAGUAY 1-0 → MOROCCO 2-0 → FELL 2-0 TO SPAIN IN THE SEMIFINAL, THEIR FIRST GOALS CONCEDED ALL KNOCKOUTS. INTO THE 3RD-PLACE PLAYOFF (JUL 18). MBAPPÉ ENDS ON 8."
   },
   sen: {
     name: "SENEGAL", flag: "🇸🇳", group: "I", lat: 14.5, lon: -14.5,
