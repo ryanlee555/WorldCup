@@ -541,7 +541,7 @@ const TEAMS = {
     legends: ["Lionel Messi", "Diego Maradona", "Mario Kempes", "Gabriel Batistuta", "Julián Álvarez"],
     wc: "19th appearance. Champions 1978, 1986, 2022 — chasing back-to-back titles, last done by Brazil in 1962.",
     fact: "Messi, 39, is playing his SIXTH World Cup — a men's record.",
-    status: "🟦 WON GROUP J → CAPE VERDE 3-2 AET → BEAT EGYPT 3-2 (ENZO 90+2') → ÁLVAREZ'S ET GOLAZO SANK SWITZERLAND 3-1 → SEMIFINAL VS ENGLAND, JUL 15. MESSI vs BELLINGHAM."
+    status: "🏆 WON GROUP J → EGYPT 3-2 → SWITZERLAND 3-1 AET → MESSI'S TWO ASSISTS SANK ENGLAND 2-1 IN A LATE COMEBACK → IN THE FINAL VS SPAIN, JUL 19! CHASING BACK-TO-BACK TITLES."
   },
   alg: {
     name: "ALGERIA", flag: "🇩🇿", group: "J", lat: 28.0, lon: 2.6,
@@ -657,7 +657,7 @@ const TEAMS = {
     legends: ["Harry Kane", "Jude Bellingham", "Bobby Moore", "Gary Lineker", "Bukayo Saka"],
     wc: "17th appearance. Champions 1966 at Wembley — the 60-year wait is the national obsession.",
     fact: "England invented the rules of football in a London pub in 1863 (The Freemasons' Tavern).",
-    status: "🟦 WON GROUP L → KANE SANK DR CONGO → HELD OFF MEXICO 3-2 → BELLINGHAM'S EXTRA-TIME DOUBLE BEAT NORWAY 2-1 → SEMIFINAL VS ARGENTINA, JUL 15. FIRST SEMI SINCE 2018!"
+    status: "🟥 WON GROUP L → MEXICO 3-2 → BELLINGHAM'S ET DOUBLE BEAT NORWAY → LED ARGENTINA BUT LOST 2-1 TO A MESSI-INSPIRED LATE COMEBACK IN THE SEMI. INTO THE 3RD-PLACE PLAYOFF (JUL 18)."
   },
   cro: {
     name: "CROATIA", flag: "🇭🇷", group: "L", lat: 45.2, lon: 15.5,

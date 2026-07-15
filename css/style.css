@@ -285,6 +285,7 @@ canvas { image-rendering: pixelated; }
 .odds-bar-wrap { background: #06061a; border: 1px solid var(--border); height: 14px; }
 .odds-bar { height: 100%; }
 .tier-FAVORITE { background: linear-gradient(90deg, #ffd700, #ff8c00); }
+.tier-FINALIST { background: linear-gradient(90deg, #ffd700, #ff6ec7); }
 .tier-CONTENDER { background: linear-gradient(90deg, #29d9e6, #2980e6); }
 .tier-DARK-HORSE { background: linear-gradient(90deg, #ff6ec7, #a03dd0); }
 .tier-LONGSHOT { background: #3d3d7a; }

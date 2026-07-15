@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 15, 2026 — Spain into the final; SF2 (Argentina-England) next.
+   DATA PATCH: July 16, 2026 — THE FINAL IS SET: Spain vs Argentina (Jul 19).
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -140,12 +140,13 @@ const MATCHES = [
   { id:"sf-1", round:"SF", date:"JUL 14", a:"fra", b:"esp", sa:0, sb:2, status:"played", note:"SPAIN END FRANCE'S UNBEATEN RUN — INTO THE FINAL", venue:"DALLAS STADIUM", espnId:760514,
     d:{ goals:[{t:"esp",p:"Oyarzabal",m:22,pen:true},{t:"esp",p:"Pedro Porro",m:58}], motm:{t:"esp",p:"Lamine Yamal"},
         sum:"The Euro champions dethroned the tournament favourites. Oyarzabal converted a penalty won by the brilliant Lamine Yamal on 22', and Porro doubled it on 58' off a one-two with Dani Olmo. France — who hadn't conceded a single goal in the knockouts — were held to 0.04 xG in a chastening first half (and lost Saliba to injury), as Spain reached their first World Cup final since 2010." } },
-  { id:"sf-2", round:"SF", date:"JUL 15", a:"arg", b:"eng", sa:null, sb:null, status:"upcoming", venue:"ATLANTA STADIUM",
-    d:{ preview:"A heavyweight second semifinal: Messi's Argentina, the defending champions, against Bellingham & Kane's England, into the last four for the first time since 2018. Atlanta, Jul 15, for a place in the final." } },
-  { id:"f-3rd", round:"3RD", date:"JUL 18", a:"fra", b:null, ph:"FRANCE vs ARG/ENG LOSER", sa:null, sb:null, status:"tbd", venue:"MIAMI STADIUM",
-    d:{ preview:"France, beaten by Spain in the semis, meet the losing semifinalist from Argentina–England in the third-place playoff. Miami, Jul 18." } },
-  { id:"f-1", round:"FINAL", date:"JUL 19", a:"esp", b:null, ph:"SPAIN vs ARG/ENG", sa:null, sb:null, status:"tbd", venue:"NEW YORK NEW JERSEY STADIUM",
-    d:{ preview:"🏆 THE FINAL. Spain — into their first final since winning it all in 2010 — await the winner of Argentina vs England. July 19 at New York New Jersey Stadium, 82,500 seats. One match for the whole thing." } }
+  { id:"sf-2", round:"SF", date:"JUL 15", a:"arg", b:"eng", sa:2, sb:1, status:"played", note:"MESSI-INSPIRED LATE COMEBACK — ARGENTINA REACH THE FINAL", venue:"ATLANTA STADIUM", espnId:760515,
+    d:{ goals:[{t:"eng",p:"Anthony Gordon",m:55},{t:"arg",p:"Enzo Fernández",m:85},{t:"arg",p:"Lautaro Martínez",m:90}], motm:{t:"arg",p:"Lionel Messi"},
+        sum:"Gordon's second-half strike had England 45 minutes from the final, but Messi took over — assisting Enzo Fernández's 85th-minute equaliser and then Lautaro Martínez's late winner. The defending champions are back in the final, chasing the first back-to-back World Cup since Brazil in 1962." } },
+  { id:"f-3rd", round:"3RD", date:"JUL 18", a:"fra", b:"eng", sa:null, sb:null, status:"upcoming", venue:"MIAMI STADIUM",
+    d:{ preview:"The beaten semifinalists meet for bronze: France (edged by Spain) against England (undone by Messi's Argentina). Miami, Jul 18." } },
+  { id:"f-1", round:"FINAL", date:"JUL 19", a:"esp", b:"arg", sa:null, sb:null, status:"upcoming", venue:"NEW YORK NEW JERSEY STADIUM",
+    d:{ preview:"🏆 THE FINAL: SPAIN vs ARGENTINA. The Euro champions, in their first World Cup final since winning it in 2010, against Messi's defending champions chasing the first back-to-back title since 1962. July 19 at New York New Jersey Stadium, 82,500 seats. One match for the whole thing." } }
 ];
 
 /* Bracket layout: QF blocks with their feeder R16 + R32 matches */
@@ -159,18 +160,17 @@ const BRACKET = [
 /* ---- Title odds (consensus sportsbook lines, Jul 5 2026) ----
    Odds shift fast — n/a means still alive but line not confirmed at patch time. */
 const ODDS = [
-  { t:"esp", line:"n/a",   tier:"FAVORITE",   note:"IN THE FINAL — beat France 2-0" },
-  { t:"arg", line:"n/a",   tier:"CONTENDER",  note:"Messi's title defense · SF vs England" },
-  { t:"eng", line:"n/a",   tier:"CONTENDER",  note:"Bellingham dragging them there · SF vs Argentina" }
+  { t:"esp", line:"n/a",   tier:"FINALIST",   note:"Euro champs · beat France 2-0 to reach the final" },
+  { t:"arg", line:"n/a",   tier:"FINALIST",   note:"Defending champs · Messi's late-comeback magic" }
 ];
 
 /* ---- Live banner ---- */
 const LIVE_TODAY = {
-  label: "⚡ SEMIFINALS",
+  label: "🏆 THE FINAL IS SET",
   items: [
-    "FT: SPAIN 2-0 FRANCE — La Roja end the favourites' run and reach their first final since 2010",
-    "TODAY JUL 15 · ARGENTINA vs ENGLAND · ATLANTA — Messi vs Bellingham for the other final spot",
-    "FINAL: JUL 19 · SPAIN vs (ARG/ENG) · NEW YORK NEW JERSEY"
+    "SPAIN vs ARGENTINA · SUN JUL 19 · NEW YORK NEW JERSEY — Euro champs vs the defending champions",
+    "Argentina 2-1 England (Messi ×2 assists in a late comeback) · Spain 2-0 France",
+    "3RD PLACE: FRANCE vs ENGLAND · JUL 18 · MIAMI"
   ]
 };
 
@@ -225,5 +225,5 @@ const FACTS_2026 = [
   "A new round: the Round of 32 — group winners, runners-up and 8 best third-placed teams advance.",
   "Messi (39) and Ronaldo (41) both playing — their SIXTH World Cups, 20 years after their first.",
   "Paraguay's win over Germany earned a national holiday back home.",
-  "Kylian Mbappé leads the Golden Boot race on 8 goals, edging Messi (8) on the tiebreaker, with Haaland on 7."
+  "Mbappé and Messi are tied atop the Golden Boot race on 8 goals each (Haaland 7) — to be settled over the final weekend."
 ];
