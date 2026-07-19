@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 16, 2026 — THE FINAL IS SET: Spain vs Argentina (Jul 19).
+   DATA PATCH: July 19, 2026 (final day) — bronze done; Spain vs Argentina final still to play.
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -143,8 +143,10 @@ const MATCHES = [
   { id:"sf-2", round:"SF", date:"JUL 15", a:"arg", b:"eng", sa:2, sb:1, status:"played", note:"MESSI-INSPIRED LATE COMEBACK — ARGENTINA REACH THE FINAL", venue:"ATLANTA STADIUM", espnId:760515,
     d:{ goals:[{t:"eng",p:"Anthony Gordon",m:55},{t:"arg",p:"Enzo Fernández",m:85},{t:"arg",p:"Lautaro Martínez",m:90}], motm:{t:"arg",p:"Lionel Messi"},
         sum:"Gordon's second-half strike had England 45 minutes from the final, but Messi took over — assisting Enzo Fernández's 85th-minute equaliser and then Lautaro Martínez's late winner. The defending champions are back in the final, chasing the first back-to-back World Cup since Brazil in 1962." } },
-  { id:"f-3rd", round:"3RD", date:"JUL 18", a:"fra", b:"eng", sa:null, sb:null, status:"upcoming", venue:"MIAMI STADIUM",
-    d:{ preview:"The beaten semifinalists meet for bronze: France (edged by Spain) against England (undone by Messi's Argentina). Miami, Jul 18." } },
+  { id:"f-3rd", round:"3RD", date:"JUL 18", a:"fra", b:"eng", sa:4, sb:6, status:"played", note:"10-GOAL THRILLER · SAKA HAT-TRICK · ENGLAND TAKE BRONZE", venue:"MIAMI STADIUM", espnId:760516,
+    d:{ goals:[{t:"eng",p:"Rice",m:3},{t:"eng",p:"Konsa"},{t:"eng",p:"Saka"},{t:"eng",p:"Saka"},{t:"eng",p:"Saka"},{t:"eng",p:"Bellingham"},{t:"fra",p:"Mbappé"},{t:"fra",p:"Mbappé"},{t:"fra",p:"Dembélé"},{t:"fra",p:"Barcola"}],
+        motm:{t:"eng",p:"Bukayo Saka"},
+        sum:"The most goals in a World Cup match since 1982. Rice and Konsa put England 2-0 up, Saka completed a hat-trick and Bellingham iced it — his 7th goal, a England record for a single World Cup. France raged back through a Mbappé brace (taking him clear atop the Golden Boot on 10) plus Dembélé and Barcola, but England took the bronze — their best World Cup finish since winning it in 1966." } },
   { id:"f-1", round:"FINAL", date:"JUL 19", a:"esp", b:"arg", sa:null, sb:null, status:"upcoming", venue:"NEW YORK NEW JERSEY STADIUM",
     d:{ preview:"🏆 THE FINAL: SPAIN vs ARGENTINA. The Euro champions, in their first World Cup final since winning it in 2010, against Messi's defending champions chasing the first back-to-back title since 1962. July 19 at New York New Jersey Stadium, 82,500 seats. One match for the whole thing." } }
 ];
@@ -166,11 +168,11 @@ const ODDS = [
 
 /* ---- Live banner ---- */
 const LIVE_TODAY = {
-  label: "🏆 THE FINAL IS SET",
+  label: "🏆 FINAL DAY — JUL 19",
   items: [
-    "SPAIN vs ARGENTINA · SUN JUL 19 · NEW YORK NEW JERSEY — Euro champs vs the defending champions",
-    "Argentina 2-1 England (Messi ×2 assists in a late comeback) · Spain 2-0 France",
-    "3RD PLACE: FRANCE vs ENGLAND · JUL 18 · MIAMI"
+    "SPAIN vs ARGENTINA · TODAY · NEW YORK NEW JERSEY — Euro champions vs the defending champions",
+    "Messi vs Yamal · La Roja chase title #2, Argentina chase back-to-back",
+    "BRONZE: England 6-4 France in a 10-goal thriller (Saka hat-trick); Mbappé's brace wins the Golden Boot race lead on 10"
   ]
 };
 
@@ -225,5 +227,5 @@ const FACTS_2026 = [
   "A new round: the Round of 32 — group winners, runners-up and 8 best third-placed teams advance.",
   "Messi (39) and Ronaldo (41) both playing — their SIXTH World Cups, 20 years after their first.",
   "Paraguay's win over Germany earned a national holiday back home.",
-  "Mbappé and Messi are tied atop the Golden Boot race on 8 goals each (Haaland 7) — to be settled over the final weekend."
+  "Kylian Mbappé's brace in the bronze final took him to 10 goals and the outright Golden Boot lead; Messi (8) can still chase in the final."
 ];

@@ -483,7 +483,7 @@ const TEAMS = {
     legends: ["Zinedine Zidane", "Kylian Mbappé", "Michel Platini", "Thierry Henry", "Antoine Griezmann"],
     wc: "17th appearance. Champions 1998 & 2018, runners-up 2022 — in a third straight final hunt.",
     fact: "Mbappé scored a hat-trick in the 2022 final and still lost. He remembers.",
-    status: "🟥 WON GROUP I → SWEDEN 3-0 → PARAGUAY 1-0 → MOROCCO 2-0 → FELL 2-0 TO SPAIN IN THE SEMIFINAL, THEIR FIRST GOALS CONCEDED ALL KNOCKOUTS. INTO THE 3RD-PLACE PLAYOFF (JUL 18). MBAPPÉ ENDS ON 8."
+    status: "④ FOURTH PLACE. LOST 2-0 TO SPAIN IN THE SEMI, THEN 6-4 TO ENGLAND IN THE BRONZE-FINAL SHOOTOUT DESPITE A MBAPPÉ BRACE — WHICH TOOK HIM TO 10 GOALS AND THE GOLDEN BOOT LEAD."
   },
   sen: {
     name: "SENEGAL", flag: "🇸🇳", group: "I", lat: 14.5, lon: -14.5,
@@ -657,7 +657,7 @@ const TEAMS = {
     legends: ["Harry Kane", "Jude Bellingham", "Bobby Moore", "Gary Lineker", "Bukayo Saka"],
     wc: "17th appearance. Champions 1966 at Wembley — the 60-year wait is the national obsession.",
     fact: "England invented the rules of football in a London pub in 1863 (The Freemasons' Tavern).",
-    status: "🟥 WON GROUP L → MEXICO 3-2 → BELLINGHAM'S ET DOUBLE BEAT NORWAY → LED ARGENTINA BUT LOST 2-1 TO A MESSI-INSPIRED LATE COMEBACK IN THE SEMI. INTO THE 3RD-PLACE PLAYOFF (JUL 18)."
+    status: "🥉 THIRD PLACE! LOST TO ARGENTINA IN THE SEMI, THEN BEAT FRANCE 6-4 IN A 10-GOAL BRONZE-FINAL THRILLER (SAKA HAT-TRICK). ENGLAND'S BEST WORLD CUP SINCE WINNING IT IN 1966; BELLINGHAM ENDS ON 7."
   },
   cro: {
     name: "CROATIA", flag: "🇭🇷", group: "L", lat: 45.2, lon: 15.5,
