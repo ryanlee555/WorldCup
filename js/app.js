@@ -48,7 +48,8 @@ const SFX = (() => {
 window.SFX = SFX;
 
 /* ---------------- alive flags for globe markers ---------------- */
-const ALIVE = new Set(["esp","arg"]);
+/* Tournament complete — only the champions glow gold. */
+const ALIVE = new Set(["esp"]);
 for (const [id, t] of Object.entries(TEAMS)) t._alive = ALIVE.has(id);
 
 /* ---------------- navigation ---------------- */

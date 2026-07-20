@@ -1,6 +1,6 @@
 /* ============================================================
    tournament.js — 2026 tournament state
-   DATA PATCH: July 19, 2026 (final day) — bronze done; Spain vs Argentina final still to play.
+   DATA PATCH: July 19, 2026 — TOURNAMENT COMPLETE. Champions: Spain 🇪🇸.
    Knockout goals/cards/stats researched from live coverage
    (ESPN, FIFA/Opta match centres, Al Jazeera, Sky Sports).
    To update after new matches: edit MATCHES + ODDS below,
@@ -147,8 +147,9 @@ const MATCHES = [
     d:{ goals:[{t:"eng",p:"Rice",m:3},{t:"eng",p:"Konsa"},{t:"eng",p:"Saka"},{t:"eng",p:"Saka"},{t:"eng",p:"Saka"},{t:"eng",p:"Bellingham"},{t:"fra",p:"Mbappé"},{t:"fra",p:"Mbappé"},{t:"fra",p:"Dembélé"},{t:"fra",p:"Barcola"}],
         motm:{t:"eng",p:"Bukayo Saka"},
         sum:"The most goals in a World Cup match since 1982. Rice and Konsa put England 2-0 up, Saka completed a hat-trick and Bellingham iced it — his 7th goal, a England record for a single World Cup. France raged back through a Mbappé brace (taking him clear atop the Golden Boot on 10) plus Dembélé and Barcola, but England took the bronze — their best World Cup finish since winning it in 1966." } },
-  { id:"f-1", round:"FINAL", date:"JUL 19", a:"esp", b:"arg", sa:null, sb:null, status:"upcoming", venue:"NEW YORK NEW JERSEY STADIUM",
-    d:{ preview:"🏆 THE FINAL: SPAIN vs ARGENTINA. The Euro champions, in their first World Cup final since winning it in 2010, against Messi's defending champions chasing the first back-to-back title since 1962. July 19 at New York New Jersey Stadium, 82,500 seats. One match for the whole thing." } }
+  { id:"f-1", round:"FINAL", date:"JUL 19", a:"esp", b:"arg", sa:1, sb:0, status:"played", note:"🏆 AET — FERRAN TORRES WINS SPAIN A SECOND WORLD CUP", venue:"NEW YORK NEW JERSEY STADIUM", espnId:760517,
+    d:{ goals:[{t:"esp",p:"Ferran Torres",m:106}], motm:{t:"esp",p:"Ferran Torres"},
+        sum:"SPAIN ARE WORLD CHAMPIONS. La Roja suffocated Argentina for 120 minutes — limiting the defending champions to just two shots — before substitute Ferran Torres, only the second sub ever to score a World Cup final winner, tucked home an 8-yard strike in the 106th minute. It is Spain's second world title (first since 2010) and the crowning of a new golden generation led by Lamine Yamal. Lionel Messi's likely final tournament ended in defeat as Argentina lost a record-equalling fourth final and fell short of back-to-back crowns." } }
 ];
 
 /* Bracket layout: QF blocks with their feeder R16 + R32 matches */
@@ -162,17 +163,17 @@ const BRACKET = [
 /* ---- Title odds (consensus sportsbook lines, Jul 5 2026) ----
    Odds shift fast — n/a means still alive but line not confirmed at patch time. */
 const ODDS = [
-  { t:"esp", line:"n/a",   tier:"FINALIST",   note:"Euro champs · beat France 2-0 to reach the final" },
-  { t:"arg", line:"n/a",   tier:"FINALIST",   note:"Defending champs · Messi's late-comeback magic" }
+  { t:"esp", line:"WON",   tier:"FINALIST",   note:"🏆 WORLD CHAMPIONS — beat Argentina 1-0 (AET)" },
+  { t:"arg", line:"2nd",   tier:"FINALIST",   note:"Runners-up — fell to Ferran Torres' extra-time winner" }
 ];
 
 /* ---- Live banner ---- */
 const LIVE_TODAY = {
-  label: "🏆 FINAL DAY — JUL 19",
+  label: "🏆 SPAIN ARE WORLD CHAMPIONS!",
   items: [
-    "SPAIN vs ARGENTINA · TODAY · NEW YORK NEW JERSEY — Euro champions vs the defending champions",
-    "Messi vs Yamal · La Roja chase title #2, Argentina chase back-to-back",
-    "BRONZE: England 6-4 France in a 10-goal thriller (Saka hat-trick); Mbappé's brace wins the Golden Boot race lead on 10"
+    "FINAL: SPAIN 1-0 ARGENTINA (AET) — Ferran Torres' 106' winner seals La Roja's second World Cup",
+    "🥉 England beat France 6-4 for bronze · Mbappé wins the Golden Boot on 10",
+    "That's a wrap on the 2026 FIFA World Cup — thanks for playing! ⚽"
   ]
 };
 
@@ -199,7 +200,8 @@ const CHAMPIONS = [
   { y:2010, w:"Spain 🇪🇸",    note:"Iniesta 116' — tiki-taka immortal" },
   { y:2014, w:"Germany 🇩🇪",  note:"The 7-1. Götze wins it in extra time" },
   { y:2018, w:"France 🇫🇷",   note:"Teen Mbappé lights up Moscow" },
-  { y:2022, w:"Argentina 🇦🇷", note:"Messi completes football. Greatest final ever" }
+  { y:2022, w:"Argentina 🇦🇷", note:"Messi completes football. Greatest final ever" },
+  { y:2026, w:"Spain 🇪🇸", note:"Ferran Torres' extra-time winner downs Messi's Argentina — La Roja's 2nd" }
 ];
 
 const LEGENDS = [
@@ -218,6 +220,7 @@ const LEGENDS = [
 ];
 
 const FACTS_2026 = [
+  "🏆 CHAMPIONS: SPAIN — their 2nd World Cup, beating Argentina 1-0 (AET) on Ferran Torres' 106' winner.",
   "First 48-team World Cup — expanded from 32. 104 matches, the most ever.",
   "First World Cup hosted by THREE nations: Canada, Mexico and the USA (16 host cities).",
   "Mexico became the first country to host matches at three World Cups (1970, 1986, 2026).",
@@ -227,5 +230,5 @@ const FACTS_2026 = [
   "A new round: the Round of 32 — group winners, runners-up and 8 best third-placed teams advance.",
   "Messi (39) and Ronaldo (41) both playing — their SIXTH World Cups, 20 years after their first.",
   "Paraguay's win over Germany earned a national holiday back home.",
-  "Kylian Mbappé's brace in the bronze final took him to 10 goals and the outright Golden Boot lead; Messi (8) can still chase in the final."
+  "Kylian Mbappé won the 2026 Golden Boot with 10 goals; Messi finished on 8. But Spain lifted the trophy — Ferran Torres the unlikely final hero."
 ];

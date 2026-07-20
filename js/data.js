@@ -425,7 +425,7 @@ const TEAMS = {
     legends: ["Andrés Iniesta", "Xavi", "Iker Casillas", "Lamine Yamal", "Pedri"],
     wc: "17th appearance. Champions 2010; European champions 2024 playing the tournament's prettiest football.",
     fact: "Lamine Yamal became Spain's youngest ever World Cup scorer this summer — still a teenager.",
-    status: "🏆 WON GROUP H → PORTUGAL 1-0 → BELGIUM 2-1 → STUNNED FAVOURITES FRANCE 2-0 (OYARZABAL, PORRO) → IN THE FINAL, JUL 19! FIRST WORLD CUP FINAL SINCE WINNING IT IN 2010."
+    status: "🏆🏆 WORLD CHAMPIONS 2026! → FRANCE 2-0 IN THE SEMI → BEAT ARGENTINA 1-0 (AET) IN THE FINAL ON FERRAN TORRES' 106' WINNER. SPAIN'S SECOND WORLD CUP, FIRST SINCE 2010 — A NEW GOLDEN GENERATION LED BY LAMINE YAMAL."
   },
   cpv: {
     name: "CAPE VERDE", flag: "🇨🇻", group: "H", lat: 15.1, lon: -23.6,
@@ -541,7 +541,7 @@ const TEAMS = {
     legends: ["Lionel Messi", "Diego Maradona", "Mario Kempes", "Gabriel Batistuta", "Julián Álvarez"],
     wc: "19th appearance. Champions 1978, 1986, 2022 — chasing back-to-back titles, last done by Brazil in 1962.",
     fact: "Messi, 39, is playing his SIXTH World Cup — a men's record.",
-    status: "🏆 WON GROUP J → EGYPT 3-2 → SWITZERLAND 3-1 AET → MESSI'S TWO ASSISTS SANK ENGLAND 2-1 IN A LATE COMEBACK → IN THE FINAL VS SPAIN, JUL 19! CHASING BACK-TO-BACK TITLES."
+    status: "🥈 RUNNERS-UP 2026. ENGLAND 2-1 IN THE SEMI → LOST THE FINAL 1-0 TO SPAIN (AET, FERRAN TORRES 106'). A RECORD-EQUALLING 4TH FINAL DEFEAT; NO BACK-TO-BACK, AND LIKELY MESSI'S FINAL WORLD CUP."
   },
   alg: {
     name: "ALGERIA", flag: "🇩🇿", group: "J", lat: 28.0, lon: 2.6,
